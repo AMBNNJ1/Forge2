@@ -1,30 +1,52 @@
-# TokenForge Design
+# Forge 
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+**Forge** is a multi-chain, no-code token launch platform that enables users to deploy tokens across Solana, Base, Avalanche, and other EVM-compatible chains in under 60 seconds. The platform features customizable tokenomics, automated liquidity locking, real-time analytics, and optional social distribution tools like Tweet-to-Mint. 
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/ambnnj1s-projects/v0-token-forge-design)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/qaab9KtflTQ)
+## 🔧 Features
 
-## Overview
+- **Multi-Chain Token Deployment**  
+  Launch tokens on Solana, Base, Avalanche (and more soon) via simple UI.
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+- **No-Code Launch Wizard**  
+  Configure name, symbol, supply, chain, and mechanics without writing any code.
 
-## Deployment
+- **Tokenomics Configuration**  
+  Set burn percentages, transaction taxes, LP lock durations, and presale options.
 
-Your project is live at:
+- **Tweet-to-Mint Integration**  
+  Verify tweet ownership and reward engaged users with automated airdrops.
 
-**[https://vercel.com/ambnnj1s-projects/v0-token-forge-design](https://vercel.com/ambnnj1s-projects/v0-token-forge-design)**
+- **Liquidity Protection**  
+  Enforce automatic liquidity locks and unlock timers to prevent rug pulls.
 
-## Build your app
+- **Live Launch Dashboard**  
+  Track launched tokens by market cap, holders, burn logs, and chain activity.
 
-Continue building your app on:
+---
 
-**[https://v0.dev/chat/projects/qaab9KtflTQ](https://v0.dev/chat/projects/qaab9KtflTQ)**
+## 🏗 Tech Stack
 
-## How It Works
+| Layer         | Tech                                  |
+|--------------|----------------------------------------|
+| Frontend      | React + Tailwind (OpenAI design system) |
+| Backend       | Next.js / Express                     | 
+| Blockchain    | Solana (SPL), EVM (Base, Avalanche)   |
+| Smart Contracts | Solidity, Anchor                    |
+| Analytics     | Custom RPC queries / Subgraphs        |
+| Distribution  | Twitter API (OAuth, RT verification)  |
+| Bridges       | Axelar / LayerZero (future ready)     |
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+---
+
+## 📦 Install & Run (Development)
+
+```bash
+git clone https://github.com/AMBNNJ/Forge.git 
+cd Forge 
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
