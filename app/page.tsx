@@ -89,13 +89,18 @@ export default function TokenForgePage() {
             <Link href="#faq" className="hover:text-foreground transition-colors">
               FAQ
             </Link>
+            <Link href="/launch" className="hover:text-foreground transition-colors">
+              Launch
+            </Link>
           </nav>
           <div className="flex items-center gap-2 ml-auto">
             <ThemeToggle />
             <Button variant="ghost" className="hidden sm:inline-flex">
               Contact
             </Button>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Get Started</Button>
+            <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link href="/launch">Get Started</Link>
+            </Button>
           </div>
         </div>
       </motion.header>
