@@ -146,6 +146,29 @@ export default function TokenForgePage() {
           </div>
         </motion.section>
 
+        {/* Problem Hook Section */}
+        <motion.section
+          id="problem-hook"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="py-16 md:py-24 bg-background"
+        >
+          <div className="container max-w-4xl mx-auto px-4 md:px-6 text-center">
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold tracking-tight">
+              The $600 Billion Token Economy Is Broken.
+            </motion.h2>
+            <motion.p variants={itemVariants} className="mt-4 text-lg text-muted-foreground">
+              Every 12 minutes, someone loses money to a rug pull. Every day, brilliant projects die because
+              token launches are too complex, too expensive, or too risky.
+            </motion.p>
+            <motion.p variants={itemVariants} className="mt-4 text-lg text-muted-foreground">
+              Forge makes it impossible to fail the wrong way.
+            </motion.p>
+          </div>
+        </motion.section>
+
         {/* Three Steps to Token Success Section */}
         <motion.section
           id="how-it-works"
