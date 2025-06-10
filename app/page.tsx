@@ -30,6 +30,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import HeroCard from "@/components/hero-card"
 
 const CheckIcon = () => <CheckCircle2 className="h-5 w-5 text-green-500" />
 const CrossIcon = () => <XCircle className="h-5 w-5 text-red-500" />
@@ -133,14 +134,8 @@ export default function TokenForgePage() {
                   </MotionButton>
                 </motion.div>
               </div>
-                <motion.div variants={itemVariants} className="mx-auto md:mx-0">
-                <Image
-                  src="/heroimage.png"
-                  alt="TokenForge interface screenshot"
-                  width={900}
-                  height={600}
-                  className="w-full rounded-xl border border-border/20 shadow-lg object-cover"
-                />
+              <motion.div variants={itemVariants} className="mx-auto md:mx-0">
+                <HeroCard />
               </motion.div>
             </div>
           </div>
