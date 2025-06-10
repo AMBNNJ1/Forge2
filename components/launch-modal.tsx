@@ -56,7 +56,7 @@ export default function LaunchModal({ children }: LaunchModalProps) {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="p-0 border-none bg-transparent">
-        <Card className="max-w-xl mx-auto">
+        <Card className="max-w-xl mx-auto rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
           <CardHeader>
             <CardTitle>{`Step ${step + 1} of ${steps.length}: ${steps[step]}`}</CardTitle>
           </CardHeader>
