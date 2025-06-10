@@ -48,3 +48,19 @@
     --ring: 216 12.2% 83.9%;
   }
 }
+
+@layer utilities {
+  @keyframes ripple {
+    from { opacity: 0.4; transform: scale(0); }
+    to { opacity: 0; transform: scale(8); }
+  }
+  .animate-ripple {
+    animation: ripple 0.6s ease-out;
+  }
+  .liquid-ripple {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 9999px;
+    transform: translate(-50%, -50%);
+  }
+}

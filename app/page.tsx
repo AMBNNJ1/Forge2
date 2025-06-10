@@ -33,6 +33,7 @@ import Link from "next/link"
 import Image from "next/image"
 import HeroCard from "@/components/hero-card"
 import LaunchModal from "@/components/launch-modal"
+import LiquidGlass from "@/components/liquid-glass"
 
 const CheckIcon = () => <CheckCircle2 className="h-5 w-5 text-green-500" />
 const CrossIcon = () => <XCircle className="h-5 w-5 text-red-500" />
@@ -142,6 +143,14 @@ export default function TokenForgePage() {
               </div>
               <motion.div variants={itemVariants} className="mx-auto md:mx-0">
                 <HeroCard />
+              </motion.div>
+              <motion.div variants={itemVariants} className="mx-auto mt-8 md:mx-0">
+                <LiquidGlass className="max-w-md">
+                  <h3 className="text-xl font-semibold">Liquid Glass UI</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Experience the Apple-inspired effect.
+                  </p>
+                </LiquidGlass>
               </motion.div>
             </div>
           </div>
