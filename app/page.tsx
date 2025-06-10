@@ -32,6 +32,7 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import HeroCard from "@/components/hero-card"
+import LaunchModal from "@/components/launch-modal"
 
 const CheckIcon = () => <CheckCircle2 className="h-5 w-5 text-green-500" />
 const CrossIcon = () => <XCircle className="h-5 w-5 text-red-500" />
@@ -125,16 +126,15 @@ export default function TokenForgePage() {
                   tools. Launch on Solana, Base, or Avalanche without writing a single line of code.
                 </motion.p>
                 <motion.div variants={itemVariants} className="mt-10 flex flex-col sm:flex-row md:justify-start justify-center gap-4">
-                  <MotionButton
-                    {...buttonInteractionProps}
-                    size="lg"
-                    asChild
-                    className="bg-primary text-primary-foreground hover:bg-primary/90"
-                  >
-                    <Link href="#">
+                  <LaunchModal>
+                    <MotionButton
+                      {...buttonInteractionProps}
+                      size="lg"
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
                       Launch Your Token, Now <Rocket className="ml-2 h-4 w-4" />
-                    </Link>
-                  </MotionButton>
+                    </MotionButton>
+                  </LaunchModal>
                   <MotionButton {...buttonInteractionProps} size="lg" variant="outline">
                     Watch Live Launches <Eye className="ml-2 h-4 w-4" />
                   </MotionButton>
