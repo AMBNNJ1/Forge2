@@ -22,12 +22,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 interface LaunchForm {
   name: string
   symbol: string
-  supply: string
+  image: string
   chain: string
-  mechanics: string
+  supply: string
+  lockDuration: string
+  tokenomics: string
 }
 
-const steps = ["Name", "Symbol", "Supply", "Chain", "Mechanics"]
+const steps = ["Token Details", "Select Blockchain", "Tokenomics"]
 
 interface LaunchModalProps {
   children: React.ReactNode
@@ -38,9 +40,11 @@ export default function LaunchModal({ children }: LaunchModalProps) {
     defaultValues: {
       name: "",
       symbol: "",
-      supply: "",
+      image: "",
       chain: "",
-      mechanics: "",
+      supply: "",
+      lockDuration: "",
+      tokenomics: "",
     },
   })
   const [step, setStep] = useState(0)
@@ -63,34 +67,28 @@ export default function LaunchModal({ children }: LaunchModalProps) {
           <CardContent>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               {step === 0 && (
-                <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="name">
-                    Token Name
-                  </label>
-                  <Input id="name" {...form.register("name", { required: true })} />
-                </div>
+                <>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="name">
+                      Token Name
+                    </label>
+                    <Input id="name" {...form.register("name", { required: true })} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="symbol">
+                      Token Symbol
+                    </label>
+                    <Input id="symbol" {...form.register("symbol", { required: true })} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="image">
+                      Token Image URL
+                    </label>
+                    <Input id="image" {...form.register("image")}/>
+                  </div>
+                </>
               )}
               {step === 1 && (
-                <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="symbol">
-                    Symbol
-                  </label>
-                  <Input id="symbol" {...form.register("symbol", { required: true })} />
-                </div>
-              )}
-              {step === 2 && (
-                <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="supply">
-                    Total Supply
-                  </label>
-                  <Input
-                    id="supply"
-                    type="number"
-                    {...form.register("supply", { required: true })}
-                  />
-                </div>
-              )}
-              {step === 3 && (
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="chain">
                     Chain
@@ -110,13 +108,35 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                   </Select>
                 </div>
               )}
-              {step === 4 && (
-                <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="mechanics">
-                    Mechanics
-                  </label>
-                  <Textarea id="mechanics" {...form.register("mechanics")} />
-                </div>
+              {step === 2 && (
+                <>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="supply">
+                      Total Supply
+                    </label>
+                    <Input
+                      id="supply"
+                      type="number"
+                      {...form.register("supply", { required: true })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="lockDuration">
+                      LP Lock Duration (days)
+                    </label>
+                    <Input
+                      id="lockDuration"
+                      type="number"
+                      {...form.register("lockDuration", { required: true })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="tokenomics">
+                      Tokenomics
+                    </label>
+                    <Textarea id="tokenomics" {...form.register("tokenomics")} />
+                  </div>
+                </>
               )}
               <div className="flex justify-between pt-4">
                 {step > 0 && (
