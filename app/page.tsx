@@ -29,6 +29,7 @@ import {
   Lightbulb,
 } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 const CheckIcon = () => <CheckCircle2 className="h-5 w-5 text-green-500" />
 const CrossIcon = () => <XCircle className="h-5 w-5 text-red-500" />
@@ -106,29 +107,42 @@ export default function TokenForgePage() {
           className="relative py-24 md:py-40 text-center bg-background" // Ensure hero section also uses bg-background if it's not meant to have a distinct color
         >
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(var(--foreground-rgb),0.05),rgba(var(--background-rgb),0))]"></div>
-          <div className="container max-w-4xl mx-auto px-4 md:px-6">
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold tracking-tighter">
-              Deploy Any Token. Any Chain. 60 Seconds.
-            </motion.h1>
-            <motion.p variants={itemVariants} className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
-              The complete token creation platform with built-in burn mechanics, liquidity locks, and viral distribution
-              tools. Launch on Solana, Base, or Avalanche without writing a single line of code.
-            </motion.p>
-            <motion.div variants={itemVariants} className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-              <MotionButton
-                {...buttonInteractionProps}
-                size="lg"
-                asChild
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                <Link href="#">
-                  Launch Your Token, Now <Rocket className="ml-2 h-4 w-4" />
-                </Link>
-              </MotionButton>
-              <MotionButton {...buttonInteractionProps} size="lg" variant="outline">
-                Watch Live Launches <Eye className="ml-2 h-4 w-4" />
-              </MotionButton>
-            </motion.div>
+          <div className="container max-w-6xl mx-auto px-4 md:px-6">
+            <div className="grid gap-8 md:grid-cols-2 items-center text-center md:text-left">
+              <div>
+                <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold tracking-tighter">
+                  Deploy Any Token. Any Chain. 60 Seconds.
+                </motion.h1>
+                <motion.p variants={itemVariants} className="mt-6 max-w-2xl mx-auto md:mx-0 text-lg text-muted-foreground">
+                  The complete token creation platform with built-in burn mechanics, liquidity locks, and viral distribution
+                  tools. Launch on Solana, Base, or Avalanche without writing a single line of code.
+                </motion.p>
+                <motion.div variants={itemVariants} className="mt-10 flex flex-col sm:flex-row md:justify-start justify-center gap-4">
+                  <MotionButton
+                    {...buttonInteractionProps}
+                    size="lg"
+                    asChild
+                    className="bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    <Link href="#">
+                      Launch Your Token, Now <Rocket className="ml-2 h-4 w-4" />
+                    </Link>
+                  </MotionButton>
+                  <MotionButton {...buttonInteractionProps} size="lg" variant="outline">
+                    Watch Live Launches <Eye className="ml-2 h-4 w-4" />
+                  </MotionButton>
+                </motion.div>
+              </div>
+              <motion.div variants={itemVariants} className="mx-auto md:mx-0">
+                <Image
+                  src="/placeholder.jpg"
+                  alt="TokenForge interface screenshot"
+                  width={600}
+                  height={400}
+                  className="w-full rounded-xl border border-border/20 shadow-lg object-cover"
+                />
+              </motion.div>
+            </div>
           </div>
         </motion.section>
 
