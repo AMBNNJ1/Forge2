@@ -137,8 +137,8 @@ export default function TokenForgePage() {
                 <Image
                   src="/heroimage.png"
                   alt="TokenForge interface screenshot"
-                  width={600}
-                  height={400}
+                  width={900}
+                  height={600}
                   className="w-full rounded-xl border border-border/20 shadow-lg object-cover"
                 />
               </motion.div>
