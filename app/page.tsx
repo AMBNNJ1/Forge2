@@ -166,6 +166,15 @@ export default function TokenForgePage() {
             <motion.p variants={itemVariants} className="mt-4 text-lg text-muted-foreground">
               Forge makes it impossible to fail the wrong way.
             </motion.p>
+            <motion.div variants={itemVariants} className="mt-6 flex justify-center">
+              <Image
+                src="/rugpull.png"
+                alt="Rugpull warning"
+                width={600}
+                height={600}
+                className="rounded-xl border border-border/20 shadow-lg object-cover"
+              />
+            </motion.div>
           </div>
         </motion.section>
 
