@@ -1,23 +1,26 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import * as React from "react"
+import { useEffect, useRef, useState, useImperativeHandle } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-interface LiquidGlassProps {
+interface LiquidGlassProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
   children?: React.ReactNode
 }
 
-export default function LiquidGlass({ className, children }: LiquidGlassProps) {
-  const ref = useRef<HTMLDivElement>(null)
+const LiquidGlass = React.forwardRef<HTMLDivElement, LiquidGlassProps>(
+  ({ className, children, ...props }, ref) => {
+  const localRef = useRef<HTMLDivElement>(null)
+  useImperativeHandle(ref, () => localRef.current as HTMLDivElement)
   const shouldReduce = useReducedMotion()
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const [ripples, setRipples] = useState<{ x: number; y: number; id: number }[]>([])
 
   useEffect(() => {
     if (shouldReduce) return
-    const el = ref.current
+    const el = localRef.current
     if (!el) return
     function handleMove(e: PointerEvent) {
       const rect = el.getBoundingClientRect()
@@ -47,7 +50,7 @@ export default function LiquidGlass({ className, children }: LiquidGlassProps) {
 
   return (
     <motion.div
-      ref={ref}
+      ref={localRef}
       onClick={createRipple}
       style={{ rotateX: tilt.x, rotateY: tilt.y }}
       className={cn(
@@ -89,4 +92,8 @@ export default function LiquidGlass({ className, children }: LiquidGlassProps) {
       </div>
     </motion.div>
   )
-}
+})
+
+LiquidGlass.displayName = "LiquidGlass"
+
+export default LiquidGlass

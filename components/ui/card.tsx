@@ -1,20 +1,42 @@
+"use client"
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { useTheme } from "next-themes"
+import LiquidGlass from "@/components/liquid-glass"
 
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className
-    )}
-    {...props}
-  />
-))
+>(({ className, children, ...props }, ref) => {
+  const { theme } = useTheme()
+
+  if (theme === "dark") {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "rounded-lg border bg-card text-card-foreground shadow-sm",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+
+  return (
+    <LiquidGlass
+      ref={ref}
+      className={cn("rounded-lg text-card-foreground", className)}
+      {...props}
+    >
+      {children}
+    </LiquidGlass>
+  )
+})
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<
