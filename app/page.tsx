@@ -133,9 +133,9 @@ export default function TokenForgePage() {
                   </MotionButton>
                 </motion.div>
               </div>
-              <motion.div variants={itemVariants} className="mx-auto md:mx-0">
+                <motion.div variants={itemVariants} className="mx-auto md:mx-0">
                 <Image
-                  src="/placeholder.jpg"
+                  src="/heroimage.png"
                   alt="TokenForge interface screenshot"
                   width={600}
                   height={400}
