@@ -39,7 +39,7 @@ export default function LaunchPage() {
 
   return (
     <div className="container mx-auto max-w-xl py-10">
-      <Card>
+      <Card className="rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
         <CardHeader>
           <CardTitle>{`Step ${step + 1} of ${steps.length}: ${steps[step]}`}</CardTitle>
         </CardHeader>
