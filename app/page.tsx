@@ -113,7 +113,11 @@ export default function TokenForgePage() {
           animate="visible"
           className="relative py-24 md:py-40 text-center bg-background" // Ensure hero section also uses bg-background if it's not meant to have a distinct color
         >
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(var(--foreground-rgb),0.05),rgba(var(--background-rgb),0))]"></div>
+          <div className="absolute inset-0 -z-10 pointer-events-none select-none">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(var(--foreground-rgb),0.05),rgba(var(--background-rgb),0))]" />
+            <pre className="absolute top-10 left-4 text-[10px] font-mono text-foreground/20 opacity-70 whitespace-pre">{`mapping(address => uint256) public balances;\nevent Transfer(address indexed from, address indexed to, uint256 amount);\nmodifier onlyOwner() { require(msg.sender == owner, \"Not owner\"); _; }\nfunction totalSupply() external view returns (uint256) { return _total; }\nconstructor() payable { owner = msg.sender; _total = msg.value; }`}</pre>
+            <pre className="absolute bottom-10 right-8 text-[10px] font-mono text-foreground/20 opacity-70 whitespace-pre">{`mapping(address => uint256) public balances;\nevent Transfer(address indexed from, address indexed to, uint256 amount);\nmodifier onlyOwner() { require(msg.sender == owner, \"Not owner\"); _; }\nfunction totalSupply() external view returns (uint256) { return _total; }\nconstructor() payable { owner = msg.sender; _total = msg.value; }`}</pre>
+          </div>
           <div className="container max-w-6xl mx-auto px-4 md:px-6">
             <div className="grid gap-8 md:grid-cols-2 items-center text-center md:text-left">
               <div>
