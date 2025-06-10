@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { Table, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ThemeToggle } from "@/components/theme-toggle"
+import TweetVerifier from "@/components/tweet-verifier"
 import {
   Settings,
   CheckCircle2,
@@ -553,6 +554,17 @@ export default function TokenForgePage() {
                 Talk to Our Team <MessageSquare className="ml-2 h-4 w-4" />
               </MotionButton>
             </motion.div>
+          </div>
+        </motion.section>
+        <motion.section
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="py-16 bg-background"
+        >
+          <div className="container max-w-md mx-auto px-4 md:px-6">
+            <TweetVerifier />
           </div>
         </motion.section>
       </main>
