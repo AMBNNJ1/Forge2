@@ -24,12 +24,23 @@ interface LaunchForm {
   symbol: string
   image: string
   chain: string
+  wallet: string
+  rpcUrl: string
   supply: string
   lockDuration: string
   tokenomics: string
+  burnRate: string
+  transactionTax: string
+  presaleDuration: string
 }
 
-const steps = ["Token Details", "Select Blockchain", "Tokenomics"]
+const steps = [
+  "Token Details",
+  "Select Blockchain",
+  "Wallet & Network",
+  "Tokenomics",
+  "Advanced Settings",
+]
 
 interface LaunchModalProps {
   children: React.ReactNode
@@ -42,9 +53,14 @@ export default function LaunchModal({ children }: LaunchModalProps) {
       symbol: "",
       image: "",
       chain: "",
+      wallet: "",
+      rpcUrl: "",
       supply: "",
       lockDuration: "",
       tokenomics: "",
+      burnRate: "",
+      transactionTax: "",
+      presaleDuration: "",
     },
   })
   const [step, setStep] = useState(0)
@@ -52,8 +68,18 @@ export default function LaunchModal({ children }: LaunchModalProps) {
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1))
   const back = () => setStep((s) => Math.max(s - 1, 0))
 
-  const onSubmit = (values: LaunchForm) => {
-    console.log("Submitted", values)
+  const onSubmit = async (values: LaunchForm) => {
+    const res = await fetch("/api/launch", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    })
+    if (!res.ok) {
+      console.error("Deployment failed")
+    } else {
+      const data = await res.json()
+      console.log("Deployed", data.address)
+    }
   }
 
   return (
@@ -111,6 +137,22 @@ export default function LaunchModal({ children }: LaunchModalProps) {
               {step === 2 && (
                 <>
                   <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="wallet">
+                      Wallet Address
+                    </label>
+                    <Input id="wallet" {...form.register("wallet", { required: true })} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="rpcUrl">
+                      RPC URL
+                    </label>
+                    <Input id="rpcUrl" {...form.register("rpcUrl", { required: true })} />
+                  </div>
+                </>
+              )}
+              {step === 3 && (
+                <>
+                  <div className="space-y-2">
                     <label className="text-sm font-medium" htmlFor="supply">
                       Total Supply
                     </label>
@@ -135,6 +177,28 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                       Tokenomics
                     </label>
                     <Textarea id="tokenomics" {...form.register("tokenomics")} />
+                  </div>
+                </>
+              )}
+              {step === 4 && (
+                <>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="burnRate">
+                      Burn Rate (%)
+                    </label>
+                    <Input id="burnRate" type="number" {...form.register("burnRate")} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="transactionTax">
+                      Transaction Tax (%)
+                    </label>
+                    <Input id="transactionTax" type="number" {...form.register("transactionTax")} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="presaleDuration">
+                      Presale Duration (days)
+                    </label>
+                    <Input id="presaleDuration" type="number" {...form.register("presaleDuration")} />
                   </div>
                 </>
               )}

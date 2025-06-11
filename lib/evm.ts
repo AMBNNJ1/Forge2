@@ -9,7 +9,8 @@ export async function deployEvmToken(
   supply: bigint,
   burnPercentage = 0n,
   taxPercentage = 0n,
-  taxWallet: string | null = null
+  taxWallet: string | null = null,
+  presaleDuration = 0n
 ): Promise<string> {
   const provider = new ethers.JsonRpcProvider(rpcUrl);
   const wallet = new ethers.Wallet(privateKey, provider);
@@ -23,5 +24,9 @@ export async function deployEvmToken(
     taxWallet ?? ethers.ZeroAddress
   );
   await token.waitForDeployment();
+  if (presaleDuration > 0n) {
+    const tx = await token.startPresale(presaleDuration);
+    await tx.wait();
+  }
   return token.target as string;
 }
