@@ -34,7 +34,38 @@
 | Smart Contracts | Solidity, Anchor                    |
 | Analytics     | Custom RPC queries / Subgraphs        |
 | Distribution  | Twitter API (OAuth, RT verification)  |
-| Bridges       | Axelar / LayerZero (future ready)     |
+| Bridges       | Axelar / LayerZero                    |
+
+---
+
+## 🔄 Bridging Tokens
+
+`lib/bridge.ts` includes helpers to transfer tokens between chains.
+
+```ts
+import { bridgeViaAxelar, bridgeViaLayerZero } from "./lib/bridge";
+
+await bridgeViaAxelar({
+  rpcUrl: "https://rpc.source",
+  privateKey: "0x...",
+  fromChain: "Ethereum",
+  toChain: "Avalanche",
+  tokenAddress: "0xToken",
+  amount: 1000000000000000000n,
+  destinationAddress: "0xRecipient"
+});
+
+await bridgeViaLayerZero({
+  rpcUrl: "https://rpc.source",
+  privateKey: "0x...",
+  oftAddress: "0xOFT",
+  dstChainId: 43114,
+  amount: 1000000000000000000n,
+  destinationAddress: "0xRecipient"
+});
+```
+
+---
 
 ---
 
