@@ -16,10 +16,14 @@
 - **Tweet-to-Mint Integration**  
   Verify tweet ownership and reward engaged users with automated airdrops.
 
-- **Liquidity Protection**  
+- **Liquidity Protection**
   Enforce automatic liquidity locks and unlock timers to prevent rug pulls.
+- **Presale Escrow**
+  Investor funds are held in smart-contract escrow until the presale is finalized.
+- **Audit Status Badges**
+  Tokens display on-chain audit results so everyone knows the security status.
 
-- **Live Launch Dashboard**  
+- **Live Launch Dashboard**
   Track launched tokens by market cap, holders, burn logs, and chain activity.
 
 ---
