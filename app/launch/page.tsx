@@ -47,8 +47,18 @@ export default function LaunchPage() {
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1))
   const back = () => setStep((s) => Math.max(s - 1, 0))
 
-  const onSubmit = (values: LaunchForm) => {
-    console.log("Submitted", values)
+  const onSubmit = async (values: LaunchForm) => {
+    const res = await fetch("/api/launch", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    })
+    if (!res.ok) {
+      console.error("Deployment failed")
+    } else {
+      const data = await res.json()
+      console.log("Deployed", data.address)
+    }
   }
 
   return (
