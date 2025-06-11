@@ -404,10 +404,10 @@ export default function TokenForgePage() {
                   <h3 className="text-2xl font-semibold">Trending Now</h3>
                 </div>
                 <div className="space-y-4">
-                  {[
-                    { name: "$XTRA", chain: "Base Network", details: "5% supply burned · 30-day LP lock active" },
-                    { name: "$NODE", chain: "Avalanche", details: "Presale sold out in 2 minutes" },
-                    { name: "$QRT", chain: "Solana", details: "DAO governance distribution live" },
+                  [
+                    { name: "$XTRA", chain: "Base Network", details: "5% supply burned · 30-day LP lock active", audited: true },
+                    { name: "$NODE", chain: "Avalanche", details: "Presale sold out in 2 minutes", audited: false },
+                    { name: "$QRT", chain: "Solana", details: "DAO governance distribution live", audited: true },
                   ].map((token, idx) => (
                     <motion.div
                       key={idx}
@@ -417,7 +417,10 @@ export default function TokenForgePage() {
                       <h4 className="text-lg font-semibold text-foreground">
                         {token.name} – <span className="text-primary">{token.chain}</span>
                       </h4>
-                      <p className="text-sm text-muted-foreground mt-1">{token.details}</p>
+                      <p className="text-sm text-muted-foreground mt-1 flex items-center justify-between">
+                        <span>{token.details}</span>
+                        <AuditBadge status={token.audited ? "audited" : "pending"} />
+                      </p>
                     </motion.div>
                   ))}
                 </div>
@@ -455,13 +458,18 @@ export default function TokenForgePage() {
                 },
                 {
                   icon: CheckCircle2,
-                  title: "Verified Presales",
-                  text: "Every presale is governed by smart contracts with automatic distribution.",
+                  title: "Escrowed Presales",
+                  text: "Funds stay in smart-contract escrow until your sale is finalized.",
                 },
                 {
                   icon: ShieldCheck,
                   title: "Anti-Rug Safeguards",
                   text: "Clear warnings and enforced protections for every launch.",
+                },
+                {
+                  icon: FileText,
+                  title: "Audit Status Badges",
+                  text: "Tokens display on-chain audit results right in the dashboard.",
                 },
               ].map((item) => (
                 <MotionCard
