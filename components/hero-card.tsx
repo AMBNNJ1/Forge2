@@ -13,11 +13,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Coins, Star } from "lucide-react"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Star } from "lucide-react"
 
 export default function HeroCard() {
   return (
-    <Card className="w-full rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
+    <Card className="w-full rounded-xl border border-border/20 bg-white/30 dark:bg-white/10 backdrop-blur-lg shadow-xl">
       <CardHeader>
         <CardTitle>Forge Tokens</CardTitle>
         <CardDescription>Create Leaderboard</CardDescription>
@@ -38,11 +39,13 @@ export default function HeroCard() {
               <TableHead className="text-right">Market Cap</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="[&_tr]:border-0">
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400" />
-                <Coins className="h-4 w-4 text-primary" />
+                <Avatar className="h-6 w-6">
+                  <AvatarFallback className="text-xs">C</AvatarFallback>
+                </Avatar>
                 <span>Cast</span>
               </TableCell>
               <TableCell>3s</TableCell>
@@ -51,7 +54,9 @@ export default function HeroCard() {
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400" />
-                <Coins className="h-4 w-4 text-primary" />
+                <Avatar className="h-6 w-6">
+                  <AvatarFallback className="text-xs">C</AvatarFallback>
+                </Avatar>
                 <span>Change</span>
               </TableCell>
               <TableCell>17s</TableCell>
@@ -60,7 +65,9 @@ export default function HeroCard() {
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400" />
-                <Coins className="h-4 w-4 text-primary" />
+                <Avatar className="h-6 w-6">
+                  <AvatarFallback className="text-xs">B</AvatarFallback>
+                </Avatar>
                 <span>Bounce</span>
               </TableCell>
               <TableCell>20s</TableCell>
@@ -69,7 +76,9 @@ export default function HeroCard() {
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400" />
-                <Coins className="h-4 w-4 text-primary" />
+                <Avatar className="h-6 w-6">
+                  <AvatarFallback className="text-xs">D</AvatarFallback>
+                </Avatar>
                 <span>Drips</span>
               </TableCell>
               <TableCell>1m</TableCell>
@@ -78,7 +87,9 @@ export default function HeroCard() {
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400" />
-                <Coins className="h-4 w-4 text-primary" />
+                <Avatar className="h-6 w-6">
+                  <AvatarFallback className="text-xs">B</AvatarFallback>
+                </Avatar>
                 <span>Blythe</span>
               </TableCell>
               <TableCell>6m</TableCell>
@@ -87,7 +98,9 @@ export default function HeroCard() {
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-yellow-400" />
-                <Coins className="h-4 w-4 text-primary" />
+                <Avatar className="h-6 w-6">
+                  <AvatarFallback className="text-xs">V</AvatarFallback>
+                </Avatar>
                 <span>Vogue</span>
               </TableCell>
               <TableCell>8m</TableCell>
