@@ -98,19 +98,40 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                     <label className="text-sm font-medium" htmlFor="name">
                       Token Name
                     </label>
-                    <Input id="name" {...form.register("name", { required: true })} />
+                    <Input
+                      id="name"
+                      placeholder="Enter token name"
+                      {...form.register("name", { required: true })}
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium" htmlFor="symbol">
                       Token Symbol
                     </label>
-                    <Input id="symbol" {...form.register("symbol", { required: true })} />
+                    <Input
+                      id="symbol"
+                      placeholder="Enter token symbol"
+                      {...form.register("symbol", { required: true })}
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium" htmlFor="image">
                       Token Image URL
                     </label>
-                    <Input id="image" {...form.register("image")}/>
+                    <Input
+                      id="image"
+                      type="file"
+                      accept="image/*"
+                      placeholder="Upload token image"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (!file) return
+                        const reader = new FileReader()
+                        reader.onloadend = () =>
+                          form.setValue("image", reader.result as string)
+                        reader.readAsDataURL(file)
+                      }}
+                    />
                   </div>
                 </>
               )}
@@ -140,13 +161,21 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                     <label className="text-sm font-medium" htmlFor="wallet">
                       Wallet Address
                     </label>
-                    <Input id="wallet" {...form.register("wallet", { required: true })} />
+                    <Input
+                      id="wallet"
+                      placeholder="Enter wallet address"
+                      {...form.register("wallet", { required: true })}
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium" htmlFor="rpcUrl">
                       RPC URL
                     </label>
-                    <Input id="rpcUrl" {...form.register("rpcUrl", { required: true })} />
+                    <Input
+                      id="rpcUrl"
+                      placeholder="Enter RPC URL"
+                      {...form.register("rpcUrl", { required: true })}
+                    />
                   </div>
                 </>
               )}
@@ -159,6 +188,7 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                     <Input
                       id="supply"
                       type="number"
+                      placeholder="Total supply"
                       {...form.register("supply", { required: true })}
                     />
                   </div>
@@ -169,6 +199,7 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                     <Input
                       id="lockDuration"
                       type="number"
+                      placeholder="Lock duration in days"
                       {...form.register("lockDuration", { required: true })}
                     />
                   </div>
@@ -176,7 +207,11 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                     <label className="text-sm font-medium" htmlFor="tokenomics">
                       Tokenomics
                     </label>
-                    <Textarea id="tokenomics" {...form.register("tokenomics")} />
+                    <Textarea
+                      id="tokenomics"
+                      placeholder="Describe tokenomics"
+                      {...form.register("tokenomics")}
+                    />
                   </div>
                 </>
               )}
@@ -186,19 +221,34 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                     <label className="text-sm font-medium" htmlFor="burnRate">
                       Burn Rate (%)
                     </label>
-                    <Input id="burnRate" type="number" {...form.register("burnRate")} />
+                    <Input
+                      id="burnRate"
+                      type="number"
+                      placeholder="Burn rate (%)"
+                      {...form.register("burnRate")}
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium" htmlFor="transactionTax">
                       Transaction Tax (%)
                     </label>
-                    <Input id="transactionTax" type="number" {...form.register("transactionTax")} />
+                    <Input
+                      id="transactionTax"
+                      type="number"
+                      placeholder="Transaction tax (%)"
+                      {...form.register("transactionTax")}
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium" htmlFor="presaleDuration">
                       Presale Duration (days)
                     </label>
-                    <Input id="presaleDuration" type="number" {...form.register("presaleDuration")} />
+                    <Input
+                      id="presaleDuration"
+                      type="number"
+                      placeholder="Presale duration in days"
+                      {...form.register("presaleDuration")}
+                    />
                   </div>
                 </>
               )}
