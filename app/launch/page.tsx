@@ -23,12 +23,23 @@ interface LaunchForm {
   symbol: string
   image: string
   chain: string
+  wallet: string
+  rpcUrl: string
   supply: string
   lockDuration: string
   tokenomics: string
+  burnRate: string
+  transactionTax: string
+  presaleDuration: string
 }
 
-const steps = ["Token Details", "Select Blockchain", "Tokenomics"]
+const steps = [
+  "Token Details",
+  "Select Blockchain",
+  "Wallet & Network",
+  "Tokenomics",
+  "Advanced Settings",
+]
 
 export default function LaunchPage() {
   const form = useForm<LaunchForm>({
@@ -37,9 +48,14 @@ export default function LaunchPage() {
       symbol: "",
       image: "",
       chain: "",
+      wallet: "",
+      rpcUrl: "",
       supply: "",
       lockDuration: "",
       tokenomics: "",
+      burnRate: "",
+      transactionTax: "",
+      presaleDuration: "",
     },
   })
   const [step, setStep] = useState(0)
@@ -162,6 +178,22 @@ export default function LaunchPage() {
             {step === 2 && (
               <>
                 <div className="space-y-2">
+                  <label className="text-sm font-medium" htmlFor="wallet">
+                    Wallet Address
+                  </label>
+                  <Input id="wallet" {...form.register("wallet", { required: true })} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium" htmlFor="rpcUrl">
+                    RPC URL
+                  </label>
+                  <Input id="rpcUrl" {...form.register("rpcUrl", { required: true })} />
+                </div>
+              </>
+            )}
+            {step === 3 && (
+              <>
+                <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="supply">
                     Total Supply
                   </label>
@@ -178,6 +210,28 @@ export default function LaunchPage() {
                     Tokenomics
                   </label>
                   <Textarea id="tokenomics" {...form.register("tokenomics")} />
+                </div>
+              </>
+            )}
+            {step === 4 && (
+              <>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium" htmlFor="burnRate">
+                    Burn Rate (%)
+                  </label>
+                  <Input id="burnRate" type="number" {...form.register("burnRate")} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium" htmlFor="transactionTax">
+                    Transaction Tax (%)
+                  </label>
+                  <Input id="transactionTax" type="number" {...form.register("transactionTax")} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium" htmlFor="presaleDuration">
+                    Presale Duration (days)
+                  </label>
+                  <Input id="presaleDuration" type="number" {...form.register("presaleDuration")} />
                 </div>
               </>
             )}
