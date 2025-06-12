@@ -29,3 +29,4 @@ next-env.d.ts
 artifacts/
 cache/
 typechain-types/
+solana/**/target/

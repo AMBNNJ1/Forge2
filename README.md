@@ -17,7 +17,9 @@
   Verify tweet ownership and reward engaged users with automated airdrops.
 
 - **Liquidity Protection**
-  Enforce automatic liquidity locks and unlock timers to prevent rug pulls.
+  Enforce automatic liquidity locks and unlock timers to prevent rug pulls. A
+  placeholder Anchor program (`solana/liquidity-lock`) demonstrates the Solana
+  implementation.
 - **Presale Escrow**
   Investor funds are held in smart-contract escrow until the presale is finalized.
 - **Audit Status Badges**
@@ -34,7 +36,7 @@
 |--------------|----------------------------------------|
 | Frontend      | React + Tailwind (OpenAI design system) |
 | Backend       | Next.js / Express                     | 
-| Blockchain    | Solana (SPL), EVM (Base, Avalanche)   |
+| Blockchain    | Solana (SPL/Anchor), EVM (Base, Avalanche)   |
 | Smart Contracts | Solidity, Anchor                    |
 | Analytics     | Custom RPC queries / Subgraphs        |
 | Distribution  | Twitter API (OAuth, RT verification)  |
