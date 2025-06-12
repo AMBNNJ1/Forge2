@@ -31,6 +31,7 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import HeroCard from "@/components/hero-card"
+import { AuditBadge } from "@/components/audit-badge"
 
 const CheckIcon = () => <CheckCircle2 className="h-5 w-5 text-green-500" />
 const CrossIcon = () => <XCircle className="h-5 w-5 text-red-500" />
