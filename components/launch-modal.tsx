@@ -27,6 +27,7 @@ interface LaunchForm {
   wallet: string
   rpcUrl: string
   supply: string
+  decimals: string
   lockDuration: string
   tokenomics: string
   burnRate: string
@@ -56,6 +57,7 @@ export default function LaunchModal({ children }: LaunchModalProps) {
       wallet: "",
       rpcUrl: "",
       supply: "",
+      decimals: "18",
       lockDuration: "",
       tokenomics: "",
       burnRate: "",
@@ -190,6 +192,17 @@ export default function LaunchModal({ children }: LaunchModalProps) {
                       type="number"
                       placeholder="Total supply"
                       {...form.register("supply", { required: true })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium" htmlFor="decimals">
+                      Decimals
+                    </label>
+                    <Input
+                      id="decimals"
+                      type="number"
+                      placeholder="Token decimals"
+                      {...form.register("decimals", { required: true })}
                     />
                   </div>
                   <div className="space-y-2">

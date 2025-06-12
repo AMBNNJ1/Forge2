@@ -8,6 +8,7 @@ async function main() {
   const token = await Token.deploy(
     "MyToken",
     "MTK",
+    18,
     ethers.parseUnits("1000000", 18),
     0,
     0,

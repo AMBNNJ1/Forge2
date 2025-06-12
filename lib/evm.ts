@@ -6,6 +6,7 @@ export async function deployEvmToken(
   privateKey: string,
   name: string,
   symbol: string,
+  decimals: number,
   supply: bigint,
   burnPercentage = 0n,
   taxPercentage = 0n,
@@ -18,6 +19,7 @@ export async function deployEvmToken(
   const token = await factory.deploy(
     name,
     symbol,
+    decimals,
     supply,
     Number(burnPercentage),
     Number(taxPercentage),

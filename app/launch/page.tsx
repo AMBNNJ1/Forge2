@@ -26,6 +26,7 @@ interface LaunchForm {
   wallet: string
   rpcUrl: string
   supply: string
+  decimals: string
   lockDuration: string
   tokenomics: string
   burnRate: string
@@ -51,6 +52,7 @@ export default function LaunchPage() {
       wallet: "",
       rpcUrl: "",
       supply: "",
+      decimals: "18",
       lockDuration: "",
       tokenomics: "",
       burnRate: "",
@@ -193,17 +195,23 @@ export default function LaunchPage() {
             )}
             {step === 3 && (
               <>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="supply">
-                    Total Supply
-                  </label>
-                  <Input id="supply" type="number" {...form.register("supply", { required: true })} />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="lockDuration">
-                    LP Lock Duration (days)
-                  </label>
-                  <Input id="lockDuration" type="number" {...form.register("lockDuration", { required: true })} />
+              <div className="space-y-2">
+                <label className="text-sm font-medium" htmlFor="supply">
+                  Total Supply
+                </label>
+                <Input id="supply" type="number" {...form.register("supply", { required: true })} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium" htmlFor="decimals">
+                  Decimals
+                </label>
+                <Input id="decimals" type="number" {...form.register("decimals", { required: true })} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium" htmlFor="lockDuration">
+                  LP Lock Duration (days)
+                </label>
+                <Input id="lockDuration" type="number" {...form.register("lockDuration", { required: true })} />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="tokenomics">
