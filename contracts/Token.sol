@@ -8,6 +8,7 @@ contract Token is ERC20, Ownable {
     uint256 public burnPercentage; // in whole numbers (e.g. 2 for 2%)
     uint256 public taxPercentage; // in whole numbers (e.g. 3 for 3%)
     address public taxWallet;
+    uint8 private immutable _decimals;
 
     bool public presaleActive;
     uint256 public presaleEnd;
@@ -21,12 +22,14 @@ contract Token is ERC20, Ownable {
     constructor(
         string memory name,
         string memory symbol,
+        uint8 decimals_,
         uint256 supply,
         uint256 _burnPercentage,
         uint256 _taxPercentage,
         address _taxWallet
     ) ERC20(name, symbol) Ownable(msg.sender) {
         require(_burnPercentage + _taxPercentage <= 100, "invalid percentages");
+        _decimals = decimals_;
         _mint(msg.sender, supply);
         burnPercentage = _burnPercentage;
         taxPercentage = _taxPercentage;
@@ -62,6 +65,10 @@ contract Token is ERC20, Ownable {
     function endPresale() external onlyOwner {
         presaleActive = false;
         emit PresaleEnded();
+    }
+
+    function decimals() public view virtual override returns (uint8) {
+        return _decimals;
     }
 
     // --- internal ---
