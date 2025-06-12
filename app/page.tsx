@@ -58,6 +58,26 @@ const buttonInteractionProps = {
 }
 
 export default function TokenForgePage() {
+  const trendingTokens = [
+    {
+      name: "$XTRA",
+      chain: "Base Network",
+      details: "5% supply burned - 30-day LP lock active",
+      audited: true,
+    },
+    {
+      name: "$NODE",
+      chain: "Avalanche",
+      details: "Presale sold out in 2 minutes",
+      audited: false,
+    },
+    {
+      name: "$QRT",
+      chain: "Solana",
+      details: "DAO governance distribution live",
+      audited: true,
+    },
+  ]
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       {/* Header */}
@@ -404,18 +424,14 @@ export default function TokenForgePage() {
                   <h3 className="text-2xl font-semibold">Trending Now</h3>
                 </div>
                 <div className="space-y-4">
-                  [
-                    { name: "$XTRA", chain: "Base Network", details: "5% supply burned · 30-day LP lock active", audited: true },
-                    { name: "$NODE", chain: "Avalanche", details: "Presale sold out in 2 minutes", audited: false },
-                    { name: "$QRT", chain: "Solana", details: "DAO governance distribution live", audited: true },
-                  ].map((token, idx) => (
+                  {trendingTokens.map((token, idx) => (
                     <motion.div
                       key={idx}
                       variants={itemVariants}
                       className="bg-background p-4 rounded-md border border-border/20" // Using bg-background with a subtle border for inner items
                     >
                       <h4 className="text-lg font-semibold text-foreground">
-                        {token.name} – <span className="text-primary">{token.chain}</span>
+                        {token.name} - <span className="text-primary">{token.chain}</span>
                       </h4>
                       <p className="text-sm text-muted-foreground mt-1 flex items-center justify-between">
                         <span>{token.details}</span>
