@@ -218,15 +218,17 @@ export default function TokenForgePage() {
               {[
                 {
                   icon: Settings,
-                  title: "Step 1: Design Your Token",
+                  title: "1. Create Token",
                   content:
                     "Configure everything in minutes—name, ticker, total supply, and launch chains. Choose from battle-tested mechanics like automatic burns, transaction fees, and time-locked liquidity that protect your community from day one.",
+                  image: "/launchimage.png",
                 },
                 {
                   icon: Target,
                   title: "Step 2: Choose Your Launch Strategy",
                   content:
                     'Go public instantly, create an exclusive whitelist, or run a presale. Our viral "Tweet-to-Mint" feature turns every social share into token distribution, building your community as you launch.',
+                  image: "/placeholder.jpg",
                   highlight: true,
                 },
                 {
@@ -234,6 +236,7 @@ export default function TokenForgePage() {
                   title: "Step 3: Launch with Full Transparency",
                   content:
                     "Your token goes live with real-time analytics, automatic leaderboard placement, and complete on-chain tracking. Every holder can see burn logs, price movements, and liquidity status in real-time.",
+                  image: "/placeholder.jpg",
                 },
               ].map((item, index) => (
                 <MotionCard
@@ -245,7 +248,14 @@ export default function TokenForgePage() {
                     <item.icon className="h-10 w-10 text-primary" />
                   </div>
                   <h3 className="text-xl md:text-2xl font-semibold mb-3">{item.title}</h3>
-                  <p className="text-muted-foreground flex-grow text-sm md:text-base">{item.content}</p>
+                  <p className="text-muted-foreground text-sm md:text-base mb-4 flex-grow">{item.content}</p>
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={400}
+                    height={300}
+                    className="rounded-lg border border-border/20 object-cover"
+                  />
                 </MotionCard>
               ))}
             </div>
