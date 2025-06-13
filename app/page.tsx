@@ -214,7 +214,7 @@ export default function TokenForgePage() {
                 Three Steps to Token Success
               </motion.h2>
             </div>
-            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div className="grid grid-cols-1 gap-8 items-start">
               {[
                 {
                   icon: Settings,
@@ -229,7 +229,6 @@ export default function TokenForgePage() {
                   content:
                     'Go public instantly, create an exclusive whitelist, or run a presale. Our viral "Tweet-to-Mint" feature turns every social share into token distribution, building your community as you launch.',
                   image: "/placeholder.jpg",
-                  highlight: true,
                 },
                 {
                   icon: Sparkles,
@@ -242,7 +241,7 @@ export default function TokenForgePage() {
                 <MotionCard
                   key={item.title}
                   variants={itemVariants}
-                  className={`bg-background border-0 p-6 md:p-8 text-left flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 ${item.highlight ? "lg:col-span-1 lg:row-span-1 md:pb-12" : "lg:col-span-1"}`} // Changed bg-card to bg-background, added border-0
+                  className="bg-background border-0 p-6 md:p-8 text-left flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
                   <div className="flex-shrink-0 mb-4">
                     <item.icon className="h-10 w-10 text-primary" />
