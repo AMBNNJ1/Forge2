@@ -214,7 +214,7 @@ export default function TokenForgePage() {
                 Three Steps to Token Success
               </motion.h2>
             </div>
-            <div className="grid grid-cols-1 gap-8 items-start">
+            <div className="flex flex-col gap-8">
               {[
                 {
                   icon: Settings,
