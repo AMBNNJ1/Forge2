@@ -1,89 +1,129 @@
-# Forge 
+CrowdLaunch
+📌 One-Liner:
+A community-driven crypto launchpad where groups can pool liquidity into token ideas, auto-launching them on Base or Solana when thresholds are met—with social sharing and anti-rug protection built-in.
 
-**Forge** is a multi-chain, no-code token launch platform that enables users to deploy tokens across Solana, Base, Avalanche, and other EVM-compatible chains in under 60 seconds. The platform features customizable tokenomics, automated liquidity locking, real-time analytics, and optional social distribution tools like Tweet-to-Mint. 
+🧱 Core Features
+1. Token Idea Proposal
+Form UI: Users can propose new tokens with:
 
-## 🔧 Features
+Name, symbol, supply
 
-- **Multi-Chain Token Deployment**  
-  Launch tokens on Solana, Base, Avalanche (and more soon) via simple UI.
+Tokenomics (burn %, tax %, LP %, etc.)
 
-- **No-Code Launch Wizard**  
-  Configure name, symbol, supply, chain, and mechanics without writing any code.
+Chain preference (Base or Solana)
 
-- **Tokenomics Configuration**  
-  Set burn percentages, transaction taxes, LP lock durations, and presale options.
+Description + optional image
 
-- **Tweet-to-Mint Integration**  
-  Verify tweet ownership and reward engaged users with automated airdrops.
+Status: Set as “In funding phase” until liquidity target is reached
 
-- **Liquidity Protection**
-  Enforce automatic liquidity locks and unlock timers to prevent rug pulls. A
-  placeholder Anchor program (`solana/liquidity-lock`) demonstrates the Solana
-  implementation.
-- **Presale Escrow**
-  Investor funds are held in smart-contract escrow until the presale is finalized.
-- **Audit Status Badges**
-  Tokens display on-chain audit results so everyone knows the security status.
+2. Community Investment Pool
+Pooled Funding:
 
-- **Live Launch Dashboard**
-  Track launched tokens by market cap, holders, burn logs, and chain activity.
+Users connect wallet (MetaMask or Phantom)
 
----
+Deposit ETH (Base) or SOL (Solana)
 
-## 🏗 Tech Stack
+Funding progress bar with countdown/goal
 
-| Layer         | Tech                                  |
-|--------------|----------------------------------------|
-| Frontend      | React + Tailwind (OpenAI design system) |
-| Backend       | Next.js / Express                     | 
-| Blockchain    | Solana (SPL/Anchor), EVM (Base, Avalanche)   |
-| Smart Contracts | Solidity, Anchor                    |
-| Analytics     | Custom RPC queries / Subgraphs        |
-| Distribution  | Twitter API (OAuth, RT verification)  |
-| Bridges       | Axelar / LayerZero                    |
+Milestone Trigger:
 
----
+When funding ≥ launch threshold, token is deployed automatically
 
-## 🔄 Bridging Tokens
+3. Social Sharing Integration
+X (Twitter) Embed:
 
-`lib/bridge.ts` includes helpers to transfer tokens between chains.
+“Back this token” button with auto-generated tweet
 
-```ts
-import { bridgeViaAxelar, bridgeViaLayerZero } from "./lib/bridge";
+Shareable link with referral ID (optional)
 
-await bridgeViaAxelar({
-  rpcUrl: "https://rpc.source",
-  privateKey: "0x...",
-  fromChain: "Ethereum",
-  toChain: "Avalanche",
-  tokenAddress: "0xToken",
-  amount: 1000000000000000000n,
-  destinationAddress: "0xRecipient"
-});
+Preview card for token (name, supply, description, image)
 
-await bridgeViaLayerZero({
-  rpcUrl: "https://rpc.source",
-  privateKey: "0x...",
-  oftAddress: "0xOFT",
-  dstChainId: 43114,
-  amount: 1000000000000000000n,
-  destinationAddress: "0xRecipient"
-});
-```
+4. Token Deployment Engine
+Smart Contracts:
 
----
+Use Solidity for Base, Anchor for Solana
 
----
+Automatic token mint + liquidity pairing on launch
 
-## 📦 Install & Run (Development)
+Verified contracts with source code and metadata
 
-```bash
-git clone https://github.com/AMBNNJ/Forge.git 
-cd Forge 
+Liquidity Lock:
 
-# Install dependencies
-npm install
+Locks 100% of LP for X days/months
 
-# Run development server
-npm run dev
-```
+Option to extend or auto-renew
+
+5. Anti-Rug Protections
+Immutable Ownership (Optional):
+
+Creator can renounce contract ownership
+
+Liquidity Lock Timer:
+
+Countdown visible on token page
+
+Audit Tagging:
+
+Optionally display audit reports or on-chain score badges
+
+Presale Refund Fallback:
+
+If project doesn't hit funding goal in X days, funds are refunded automatically
+
+6. Dashboard & Token Discovery
+Trending/incoming tokens
+
+Filter by chain, status, funding progress
+
+Leaderboard: Most funded projects, most shared
+
+⚙️ Technical Stack
+Layer    Tech
+Frontend    React + Tailwind (OpenAI aesthetic)
+Backend    Next.js (API routes), Supabase
+Smart Contracts    Solidity (Base), Anchor (Solana)
+Blockchain RPC    Alchemy (Base), Helius (Solana)
+Social Auth    X OAuth / Twitter API
+Anti-Rug Infra    Axelar/LayerZero bridges (future)
+
+📊 User Flows
+🧪 Token Creator
+Click “Propose Token”
+
+Fill in form → Publish
+
+Share link on X
+
+Watch liquidity grow
+
+On reaching threshold, token is deployed automatically
+
+Creator dashboard shows analytics & status
+
+🧑‍🤝‍🧑 Backer
+Browse upcoming tokens
+
+Choose one → Click “Back This Token”
+
+Connect wallet → Contribute funds
+
+Share to help meet liquidity goal
+
+Receive tokens automatically if successful; refunded if not
+
+🔐 Security Considerations
+Smart contract audits before mainnet deployment
+
+Wallet signature prompts for every funding action
+
+Funding caps to avoid spoofed overfunding
+
+Optional KYC for creators
+
+🗓 Milestones (MVP)
+Milestone    Description    ETA
+M1    Token proposal UI + funding mechanism    2 wks
+M2    Token deployment on Base + Solana    2 wks
+M3    Social sharing + referral tracking    1 wk
+M4    Anti-rug systems + liquidity lock    1 wk
+M5    Token discovery dashboard    1 wk
