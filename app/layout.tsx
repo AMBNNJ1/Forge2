@@ -8,8 +8,9 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "TokenForge",
-  description: "Launch Your Token. Faster. Smarter. Cross-Chain.",
-    generator: 'v0.dev'
+  description:
+    "Community-driven launchpad to pool liquidity into token ideas and auto-launch on Base or Solana with social sharing and anti-rug protection.",
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
