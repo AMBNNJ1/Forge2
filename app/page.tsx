@@ -139,11 +139,11 @@ export default function TokenForgePage() {
             <div className="grid gap-8 md:grid-cols-2 items-center text-center md:text-left">
               <div>
                 <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold tracking-tighter">
-                  Deploy Any Token. Any Chain. 60 Seconds.
+                  Launch Tokens Together
                 </motion.h1>
                 <motion.p variants={itemVariants} className="mt-6 max-w-2xl mx-auto md:mx-0 text-lg text-muted-foreground">
-                  The complete token creation platform with built-in burn mechanics, liquidity locks, and viral distribution
-                  tools. Launch on Solana, Base, or Avalanche without writing a single line of code.
+                  Pool liquidity into token ideas and auto-launch them on Base or Solana once funding goals are met. Social
+                  sharing and anti-rug protection are built in.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
@@ -266,36 +266,36 @@ export default function TokenForgePage() {
                 </TableHeader>
                 <TableBody>
                   {[
-                    {
-                      feature: "Multi-Chain Support",
-                      tokenforge: true,
-                      traditional: false,
-                      details: "Solana, Base, Avalanche",
-                    },
-                    {
-                      feature: "Zero-Code Deployment",
-                      tokenforge: true,
-                      traditional: false,
-                      details: "Complete automation",
-                    },
-                    {
-                      feature: "Advanced Tokenomics",
-                      tokenforge: true,
-                      traditional: false,
-                      details: "Burns, locks, fees built-in",
-                    },
-                    {
-                      feature: "Rug-Pull Protection",
-                      tokenforge: true,
-                      traditional: false,
-                      details: "Enforced LP locks",
-                    },
-                    {
-                      feature: "Viral Distribution",
-                      tokenforge: true,
-                      traditional: false,
-                      details: "Social integration tools",
-                    },
+                  {
+                    feature: "Multi-Chain Support",
+                    tokenforge: true,
+                    traditional: false,
+                    details: "Base & Solana (more soon)",
+                  },
+                  {
+                    feature: "Community Liquidity Pools",
+                    tokenforge: true,
+                    traditional: false,
+                    details: "Group funding with progress",
+                  },
+                  {
+                    feature: "Auto-Launch When Funded",
+                    tokenforge: true,
+                    traditional: false,
+                    details: "Deploys when thresholds met",
+                  },
+                  {
+                    feature: "Social Sharing Built In",
+                    tokenforge: true,
+                    traditional: false,
+                    details: "Referral links & X posts",
+                  },
+                  {
+                    feature: "Anti-Rug Protection",
+                    tokenforge: true,
+                    traditional: false,
+                    details: "Renounced ownership & locks",
+                  },
                   ].map((item) => (
                     <TableRow key={item.feature}>
                       <TableCell className="font-medium">
