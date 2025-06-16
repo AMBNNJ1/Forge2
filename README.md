@@ -42,6 +42,7 @@ Preview card for token (name, supply, description, image)
 Smart Contracts:
 
 Use Solidity for Base, Anchor for Solana
+Tokens follow the ERC-20 and SPL standards for interoperability
 
 Automatic token mint + liquidity pairing on launch
 
@@ -52,6 +53,8 @@ Liquidity Lock:
 Locks 100% of LP for X days/months
 
 Option to extend or auto-renew
+
+Cross-chain bridging via Axelar, LayerZero, or Wormhole
 
 5. Anti-Rug Protections
 Immutable Ownership (Optional):
@@ -84,7 +87,7 @@ Backend    Next.js (API routes), Supabase
 Smart Contracts    Solidity (Base), Anchor (Solana)
 Blockchain RPC    Alchemy (Base), Helius (Solana)
 Social Auth    X OAuth / Twitter API
-Anti-Rug Infra    Axelar/LayerZero bridges (future)
+Anti-Rug Infra    Axelar/LayerZero/Wormhole bridges
 
 📊 User Flows
 🧪 Token Creator

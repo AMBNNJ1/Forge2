@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { AxelarAssetTransfer, Environment } from "@axelar-network/axelarjs-sdk";
 import oftArtifact from "@layerzerolabs/oft-evm/artifacts/contracts/oft/OFT.sol/OFT.json";
+import { ITokenBridge__factory } from "@certusone/wormhole-sdk/lib/esm/ethers-contracts";
 
 export interface AxelarBridgeOptions {
   rpcUrl: string;
@@ -51,6 +52,16 @@ export interface LayerZeroBridgeOptions {
   destinationAddress: string;
 }
 
+export interface WormholeBridgeOptions {
+  rpcUrl: string;
+  privateKey: string;
+  tokenBridge: string;
+  tokenAddress: string;
+  amount: bigint;
+  targetChain: number;
+  targetAddress: string;
+}
+
 /**
  * Bridge tokens using LayerZero OFT contracts.
  * Returns the transaction hash once confirmed.
@@ -75,6 +86,34 @@ export async function bridgeViaLayerZero({
     wallet.address,
     ethers.ZeroAddress,
     "0x"
+  );
+  const receipt = await tx.wait();
+  return receipt.hash;
+}
+
+/**
+ * Bridge tokens using Wormhole token bridge.
+ * Returns the transaction hash once confirmed.
+ */
+export async function bridgeViaWormhole({
+  rpcUrl,
+  privateKey,
+  tokenBridge,
+  tokenAddress,
+  amount,
+  targetChain,
+  targetAddress,
+}: WormholeBridgeOptions): Promise<string> {
+  const provider = new ethers.JsonRpcProvider(rpcUrl);
+  const wallet = new ethers.Wallet(privateKey, provider);
+  const bridge = ITokenBridge__factory.connect(tokenBridge, wallet);
+  const tx = await bridge.transferTokens(
+    tokenAddress,
+    amount,
+    targetChain,
+    ethers.solidityPacked(["bytes32"], [targetAddress]),
+    0,
+    0
   );
   const receipt = await tx.wait();
   return receipt.hash;

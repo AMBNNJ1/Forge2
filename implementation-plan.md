@@ -48,7 +48,7 @@ Referencing the technical stack in the README【F:README.md†L80-L88】:
 - Use Next.js and Tailwind for the frontend.
 - Implement API routes for backend operations.
 - Interact with Alchemy and Helius RPC endpoints for blockchain access.
-- Plan for future support of bridges such as Axelar or LayerZero.
+- Integrate token bridging via Axelar, LayerZero, or Wormhole.
 
 ## 9. Security & Deployment
 Taking cues from the security considerations and milestones【F:README.md†L114-L129】:

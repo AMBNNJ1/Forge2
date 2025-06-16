@@ -1,9 +1,11 @@
-import { bridgeViaAxelar, bridgeViaLayerZero } from '../bridge';
+import { bridgeViaAxelar, bridgeViaLayerZero, bridgeViaWormhole } from '../bridge';
 
 const transferWait = jest.fn();
 const transferMock = jest.fn().mockResolvedValue({ wait: transferWait });
 const sendWait = jest.fn().mockResolvedValue({ hash: '0xhash' });
 const sendFromMock = jest.fn().mockResolvedValue({ wait: sendWait });
+const wormholeWait = jest.fn().mockResolvedValue({ hash: '0xworm' });
+const wormholeTransfer = jest.fn().mockResolvedValue({ wait: wormholeWait });
 
 jest.mock('@layerzerolabs/oft-evm/artifacts/contracts/oft/OFT.sol/OFT.json', () => ({
   abi: [],
@@ -14,6 +16,10 @@ jest.mock('@axelar-network/axelarjs-sdk', () => ({
     getDepositAddress: jest.fn().mockResolvedValue('deposit'),
   })),
   Environment: { MAINNET: 'mainnet' },
+}), { virtual: true });
+
+jest.mock('@certusone/wormhole-sdk/lib/esm/ethers-contracts', () => ({
+  ITokenBridge__factory: { connect: jest.fn().mockImplementation(() => ({ transferTokens: wormholeTransfer })) },
 }), { virtual: true });
 
 jest.mock('ethers', () => ({
@@ -66,5 +72,30 @@ describe('bridgeViaLayerZero', () => {
       '0x'
     );
     expect(hash).toBe('0xhash');
+  });
+});
+
+describe('bridgeViaWormhole', () => {
+  beforeEach(() => { wormholeTransfer.mockClear(); wormholeWait.mockClear(); });
+
+  it('calls transferTokens and returns hash', async () => {
+    const hash = await bridgeViaWormhole({
+      rpcUrl: 'url',
+      privateKey: 'pk',
+      tokenBridge: 'bridge',
+      tokenAddress: 'token',
+      amount: 10n,
+      targetChain: 5,
+      targetAddress: 'dest',
+    });
+    expect(wormholeTransfer).toHaveBeenCalledWith(
+      'token',
+      10n,
+      5,
+      'packed',
+      0,
+      0
+    );
+    expect(hash).toBe('0xworm');
   });
 });
