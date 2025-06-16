@@ -73,7 +73,9 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
             <motion.div variants={itemVariants} className="mt-12">
-              <Image src="/heroimage.png" alt="Hero" width={800} height={500} className="mx-auto rounded-xl" />
+              <motion.div whileHover={{ scale: 1.02 }}>
+                <Image src="/heroimage.png" alt="Hero" width={800} height={500} className="mx-auto rounded-xl" />
+              </motion.div>
             </motion.div>
           </div>
         </motion.section>
