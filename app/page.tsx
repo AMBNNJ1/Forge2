@@ -150,7 +150,9 @@ export default function HomePage() {
             <div className="grid md:grid-cols-3 gap-8">
               {trendingTokens.map((t) => (
                 <motion.div key={t.symbol} variants={itemVariants}>
-                  <TrendingTokenCard {...t} />
+                  <Link href={`/tokens/${t.symbol.toLowerCase()}`} className="block">
+                    <TrendingTokenCard {...t} />
+                  </Link>
                 </motion.div>
               ))}
             </div>
