@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Stepper from "./stepper"
 import { Progress } from "@/components/ui/progress"
 
 interface LaunchForm {
@@ -140,8 +141,9 @@ export default function LaunchModal({ children }: LaunchModalProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="p-0 border-none bg-transparent">
         <Card className="max-w-xl mx-auto rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
-          <CardHeader>
-            <CardTitle>{`Step ${step + 1} of ${steps.length}: ${steps[step]}`}</CardTitle>
+          <CardHeader className="space-y-4">
+            <Stepper steps={steps} currentStep={step} />
+            <CardTitle className="text-center">{steps[step]}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
