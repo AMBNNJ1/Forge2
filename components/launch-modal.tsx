@@ -139,8 +139,8 @@ export default function LaunchModal({ children }: LaunchModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="p-0 border-none bg-transparent">
-        <Card className="max-w-xl mx-auto rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
+      <DialogContent className="p-0 border-none bg-transparent max-w-4xl">
+        <Card className="max-w-4xl mx-auto rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
           <CardHeader className="space-y-4">
             <Stepper steps={steps} currentStep={step} />
             <CardTitle className="text-center">{steps[step]}</CardTitle>
