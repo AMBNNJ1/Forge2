@@ -52,23 +52,20 @@ export default function HomePage() {
         >
           <div className="container mx-auto max-w-5xl px-4 md:px-6">
             <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold tracking-tight">
-              Community-Driven Token Launches
+              Your Community. Your Token. Your Launch.
             </motion.h1>
-            <motion.p variants={itemVariants} className="mt-4 text-2xl text-primary font-semibold">
-              The Future of Token Launches
-            </motion.p>
             <motion.p variants={itemVariants} className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Pool liquidity with your community to auto-launch tokens on Base or Solana when funding thresholds are met. Built-in anti-rug protection and social sharing included.
+              Why launch alone when you can launch with an army? Rally your community, pool your resources, and watch your token idea become reality through the collective power of believers who back it.
             </motion.p>
             <motion.div variants={itemVariants} className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <motion.div {...buttonProps}>
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Link href="#propose">Propose a Token</Link>
+                  <Link href="#propose">Start Your Community Launch</Link>
                 </Button>
               </motion.div>
               <motion.div {...buttonProps}>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="#trending">Explore Tokens</Link>
+                  <Link href="#trending">Join Active Launches</Link>
                 </Button>
               </motion.div>
             </motion.div>
