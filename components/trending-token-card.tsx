@@ -12,6 +12,10 @@ export interface TrendingToken {
   goal: string
   backers: number
   daysLeft: number
+  website?: string
+  launchDate?: string
+  launchPrice?: string
+  totalSupply?: string
 }
 
 export default function TrendingTokenCard({
