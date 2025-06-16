@@ -138,12 +138,21 @@ export default function TokenForgePage() {
           <div className="container max-w-6xl mx-auto px-4 md:px-6">
             <div className="grid gap-8 md:grid-cols-2 items-center text-center md:text-left">
               <div>
-                <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold tracking-tighter">
-                  Launch Tokens Together
+                <motion.h1
+                  variants={itemVariants}
+                  className="text-4xl md:text-6xl font-bold tracking-tighter"
+                >
+                  Launch Tokens Successfully—Powered by Community, Protected from
+                  Risk
                 </motion.h1>
-                <motion.p variants={itemVariants} className="mt-6 max-w-2xl mx-auto md:mx-0 text-lg text-muted-foreground">
-                  Pool liquidity into token ideas and auto-launch them on Base or Solana once funding goals are met. Social
-                  sharing and anti-rug protection are built in.
+                <motion.p
+                  variants={itemVariants}
+                  className="mt-6 max-w-2xl mx-auto md:mx-0 text-lg text-muted-foreground"
+                >
+                  CrowdLaunch enables your community to safely launch tokens on
+                  Base or Solana with built-in advantages over solo launches.
+                  Benefit from transparency, collective backing, and unmatched
+                  security.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
@@ -155,9 +164,15 @@ export default function TokenForgePage() {
                     className="bg-primary text-primary-foreground hover:bg-primary/90"
                     asChild
                   >
-                    <Link href="/launch">
-                      Launch Your Token, Now <Rocket className="ml-2 h-4 w-4" />
-                    </Link>
+                    <Link href="/launch">Launch Your Token</Link>
+                  </MotionButton>
+                  <MotionButton
+                    {...buttonInteractionProps}
+                    size="lg"
+                    variant="outline"
+                    asChild
+                  >
+                    <Link href="#live-dashboard">Discover Winning Projects</Link>
                   </MotionButton>
                 </motion.div>
               </div>
@@ -237,7 +252,7 @@ export default function TokenForgePage() {
           </div>
         </motion.section>
 
-        {/* Why TokenForge Wins Section */}
+        {/* Why CrowdLaunch Outperforms Solo Launches */}
         <motion.section
           id="why-tokenforge"
           variants={sectionVariants}
@@ -249,65 +264,89 @@ export default function TokenForgePage() {
           <div className="container max-w-5xl mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
               <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold tracking-tight">
-                Why TokenForge Wins
+                Why CrowdLaunch Outperforms Solo Launches
               </motion.h2>
             </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              {[
+                {
+                  icon: GroupIcon,
+                  title: "Community Validation",
+                  text:
+                    "Tokens launched via CrowdLaunch receive immediate collective validation, significantly boosting trust, visibility, and long-term adoption compared to isolated, solo efforts.",
+                },
+                {
+                  icon: Lock,
+                  title: "Transparent, Guaranteed Liquidity",
+                  text:
+                    "Enjoy clearly visible liquidity pools and real-time funding tracking. Guaranteed liquidity pools dramatically reduce the risk of failure common in independent launches.",
+                },
+                {
+                  icon: Rocket,
+                  title: "Automatic Launch & Liquidity Lock",
+                  text:
+                    "Once your liquidity threshold is achieved, tokens launch automatically with locked liquidity, increasing credibility and investor confidence.",
+                },
+                {
+                  icon: MessageSquare,
+                  title: "Community-Driven Promotion",
+                  text:
+                    "CrowdLaunch seamlessly integrates social sharing through X (Twitter), creating immediate and authentic community engagement—significantly outperforming solo promotional efforts.",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Ultimate Anti-Rug Security",
+                  text:
+                    "Automated liquidity locking, transparent audits, and optional ownership renouncement safeguard your token launch, giving it a substantial advantage over independently launched tokens.",
+                },
+                {
+                  icon: Gauge,
+                  title: "Intelligent Project Dashboard",
+                  text:
+                    "CrowdLaunch provides comprehensive insights into token performance, funding progress, and community sentiment, enabling smarter decisions and stronger outcomes.",
+                },
+                {
+                  icon: Sparkles,
+                  title: "Advanced Blockchain Technology",
+                  text:
+                    "With Solidity for Base and Anchor for Solana, CrowdLaunch ensures rapid, secure, and hassle-free token deployment, removing technical barriers faced in solo token launches.",
+                },
+              ].map((item) => (
+                <MotionCard
+                  key={item.title}
+                  variants={itemVariants}
+                  className="bg-background border-0 p-6 flex items-start gap-4 shadow-lg"
+                >
+                  <div className="flex-shrink-0 mt-1">
+                    <item.icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
+                    <p className="text-muted-foreground text-sm">{item.text}</p>
+                  </div>
+                </MotionCard>
+              ))}
+            </div>
+            <motion.p
+              variants={itemVariants}
+              className="mt-10 text-center text-muted-foreground text-lg"
+            >
+              CrowdLaunch delivers the trust, momentum, and community-driven
+              support crucial for your token’s success—transforming your launch
+              into a confident, collaborative journey.
+            </motion.p>
             <motion.div
               variants={itemVariants}
-              className="overflow-x-auto bg-background border-0 p-6 shadow-lg rounded-lg" // Changed bg-card to bg-background, added border-0
+              className="mt-8 flex justify-center"
             >
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[35%] text-base">Feature</TableHead>
-                    <TableHead className="text-center text-base text-primary">TokenForge</TableHead>
-                    <TableHead className="text-center text-base">Traditional Platforms</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {[
-                  {
-                    feature: "Multi-Chain Support",
-                    tokenforge: true,
-                    traditional: false,
-                    details: "Base & Solana (more soon)",
-                  },
-                  {
-                    feature: "Community Liquidity Pools",
-                    tokenforge: true,
-                    traditional: false,
-                    details: "Group funding with progress",
-                  },
-                  {
-                    feature: "Auto-Launch When Funded",
-                    tokenforge: true,
-                    traditional: false,
-                    details: "Deploys when thresholds met",
-                  },
-                  {
-                    feature: "Social Sharing Built In",
-                    tokenforge: true,
-                    traditional: false,
-                    details: "Referral links & X posts",
-                  },
-                  {
-                    feature: "Anti-Rug Protection",
-                    tokenforge: true,
-                    traditional: false,
-                    details: "Renounced ownership & locks",
-                  },
-                  ].map((item) => (
-                    <TableRow key={item.feature}>
-                      <TableCell className="font-medium">
-                        {item.feature}
-                        {item.details && <span className="block text-xs text-muted-foreground">{item.details}</span>}
-                      </TableCell>
-                      <TableCell className="text-center">{item.tokenforge ? <CheckIcon /> : <CrossIcon />}</TableCell>
-                      <TableCell className="text-center">{item.traditional ? <CheckIcon /> : <CrossIcon />}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+              <MotionButton
+                {...buttonInteractionProps}
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                asChild
+              >
+                <Link href="/launch">Launch Confidently</Link>
+              </MotionButton>
             </motion.div>
           </div>
         </motion.section>
