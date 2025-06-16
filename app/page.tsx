@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Layers, GroupIcon, Rocket, ShieldCheck, MessageSquare } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 import Metrics from "@/components/metrics"
 import TrendingTokenCard, { TrendingToken } from "@/components/trending-token-card"
 import TokenProposalForm from "@/components/token-proposal-form"
@@ -70,6 +71,9 @@ export default function HomePage() {
             <Link href="#trending" className="hover:text-foreground transition-colors">Trending</Link>
             <Link href="#propose" className="hover:text-foreground transition-colors">Propose</Link>
           </nav>
+          <div className="flex items-center gap-2 ml-auto">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
       <main className="flex-1">
