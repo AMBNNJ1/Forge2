@@ -18,6 +18,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import Stepper from "@/components/stepper"
 
 interface LaunchForm {
   name: string
@@ -180,8 +181,9 @@ export default function LaunchPage() {
       <main className="flex-1">
         <div className="container mx-auto max-w-xl py-10">
           <Card className="rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
-        <CardHeader>
-          <CardTitle>{`Step ${step + 1} of ${steps.length}: ${steps[step]}`}</CardTitle>
+        <CardHeader className="space-y-4">
+          <Stepper steps={steps} currentStep={step} />
+          <CardTitle className="text-center">{steps[step]}</CardTitle>
         </CardHeader>
         <CardContent>
           <form
@@ -194,19 +196,38 @@ export default function LaunchPage() {
                   <label className="text-sm font-medium" htmlFor="name">
                     Token Name
                   </label>
-                  <Input id="name" {...form.register("name", { required: true })} />
+                  <Input
+                    id="name"
+                    placeholder="Enter token name"
+                    {...form.register("name", { required: true })}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="symbol">
                     Token Symbol
                   </label>
-                  <Input id="symbol" {...form.register("symbol", { required: true })} />
+                  <Input
+                    id="symbol"
+                    placeholder="Enter token symbol"
+                    {...form.register("symbol", { required: true })}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="image">
                     Token Image URL
                   </label>
-                  <Input id="image" {...form.register("image")} />
+                  <Input
+                    id="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0]
+                      if (!file) return
+                      const reader = new FileReader()
+                      reader.onloadend = () => form.setValue("image", reader.result as string)
+                      reader.readAsDataURL(file)
+                    }}
+                  />
                 </div>
               </>
             )}
@@ -236,13 +257,21 @@ export default function LaunchPage() {
                   <label className="text-sm font-medium" htmlFor="wallet">
                     Wallet Address
                   </label>
-                  <Input id="wallet" {...form.register("wallet", { required: true })} />
+                  <Input
+                    id="wallet"
+                    placeholder="Enter wallet address"
+                    {...form.register("wallet", { required: true })}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="rpcUrl">
                     RPC URL
                   </label>
-                  <Input id="rpcUrl" {...form.register("rpcUrl", { required: true })} />
+                  <Input
+                    id="rpcUrl"
+                    placeholder="Enter RPC URL"
+                    {...form.register("rpcUrl", { required: true })}
+                  />
                 </div>
               </>
             )}
@@ -252,25 +281,44 @@ export default function LaunchPage() {
                 <label className="text-sm font-medium" htmlFor="supply">
                   Total Supply
                 </label>
-                <Input id="supply" type="number" {...form.register("supply", { required: true })} />
+                <Input
+                  id="supply"
+                  type="number"
+                  placeholder="Total supply"
+                  {...form.register("supply", { required: true })}
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium" htmlFor="decimals">
                   Decimals
                 </label>
-                <Input id="decimals" type="number" {...form.register("decimals", { required: true })} />
+                <Input
+                  id="decimals"
+                  type="number"
+                  placeholder="Token decimals"
+                  {...form.register("decimals", { required: true })}
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium" htmlFor="lockDuration">
                   LP Lock Duration (days)
                 </label>
-                <Input id="lockDuration" type="number" {...form.register("lockDuration", { required: true })} />
+                <Input
+                  id="lockDuration"
+                  type="number"
+                  placeholder="Lock duration in days"
+                  {...form.register("lockDuration", { required: true })}
+                />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="tokenomics">
                     Tokenomics
                   </label>
-                  <Textarea id="tokenomics" {...form.register("tokenomics")} />
+                  <Textarea
+                    id="tokenomics"
+                    placeholder="Describe tokenomics"
+                    {...form.register("tokenomics")}
+                  />
                 </div>
               </>
             )}
@@ -280,19 +328,34 @@ export default function LaunchPage() {
                   <label className="text-sm font-medium" htmlFor="burnRate">
                     Burn Rate (%)
                   </label>
-                  <Input id="burnRate" type="number" {...form.register("burnRate")} />
+                  <Input
+                    id="burnRate"
+                    type="number"
+                    placeholder="Burn rate (%)"
+                    {...form.register("burnRate")}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="transactionTax">
                     Transaction Tax (%)
                   </label>
-                  <Input id="transactionTax" type="number" {...form.register("transactionTax")} />
+                  <Input
+                    id="transactionTax"
+                    type="number"
+                    placeholder="Transaction tax (%)"
+                    {...form.register("transactionTax")}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium" htmlFor="presaleDuration">
                     Presale Duration (days)
                   </label>
-                  <Input id="presaleDuration" type="number" {...form.register("presaleDuration")} />
+                  <Input
+                    id="presaleDuration"
+                    type="number"
+                    placeholder="Presale duration in days"
+                    {...form.register("presaleDuration")}
+                  />
                 </div>
               </>
             )}
@@ -310,6 +373,7 @@ export default function LaunchPage() {
                       <Input
                         id="amount"
                         type="number"
+                        placeholder="Amount to deposit"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                       />
