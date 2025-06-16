@@ -16,18 +16,25 @@ import {
 interface ProposalForm {
   name: string
   symbol: string
-  supply: string
+  supply: number
   tokenomics: string
   image: string
   chain: string
 }
 
 export default function TokenProposalForm() {
-  const form = useForm<ProposalForm>({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+    reset,
+  } = useForm<ProposalForm>({
     defaultValues: {
       name: "",
       symbol: "",
-      supply: "",
+      supply: 0,
       tokenomics: "",
       image: "",
       chain: "",
@@ -40,7 +47,7 @@ export default function TokenProposalForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
-    form.reset()
+    reset()
   }
 
   return (
@@ -49,42 +56,83 @@ export default function TokenProposalForm() {
         <CardTitle>Propose a Token</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
             <label className="text-sm font-medium" htmlFor="name">
               Token Name
             </label>
-            <Input id="name" {...form.register("name", { required: true })} />
+            <Input
+              id="name"
+              {...register("name", { required: "Name is required" })}
+            />
+            {errors.name && (
+              <p className="text-sm text-destructive">{errors.name.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium" htmlFor="symbol">
               Token Symbol
             </label>
-            <Input id="symbol" {...form.register("symbol", { required: true })} />
+            <Input
+              id="symbol"
+              {...register("symbol", {
+                required: "Symbol is required",
+                pattern: {
+                  value: /^[A-Z0-9]{2,10}$/,
+                  message: "Use 2-10 uppercase letters or numbers",
+                },
+              })}
+            />
+            {errors.symbol && (
+              <p className="text-sm text-destructive">{errors.symbol.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium" htmlFor="supply">
               Total Supply
             </label>
-            <Input id="supply" type="number" {...form.register("supply", { required: true })} />
+            <Input
+              id="supply"
+              type="number"
+              {...register("supply", {
+                required: "Supply is required",
+                valueAsNumber: true,
+                min: { value: 1, message: "Supply must be positive" },
+              })}
+            />
+            {errors.supply && (
+              <p className="text-sm text-destructive">{errors.supply.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium" htmlFor="tokenomics">
               Tokenomics
             </label>
-            <Textarea id="tokenomics" {...form.register("tokenomics")} />
+            <Textarea id="tokenomics" {...register("tokenomics")} />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium" htmlFor="image">
               Image URL
             </label>
-            <Input id="image" {...form.register("image")} />
+            <Input
+              id="image"
+              {...register("image", {
+                pattern: {
+                  value: /^https?:\/\/.+/,
+                  message: "Enter a valid URL",
+                },
+              })}
+            />
+            {errors.image && (
+              <p className="text-sm text-destructive">{errors.image.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium" htmlFor="chain">
               Chain Preference
             </label>
-            <Select value={form.watch("chain")} onValueChange={(v) => form.setValue("chain", v)}>
+            <input type="hidden" {...register("chain", { required: "Chain is required" })} />
+            <Select value={watch("chain")} onValueChange={(v) => setValue("chain", v)}>
               <SelectTrigger id="chain">
                 <SelectValue placeholder="Select a chain" />
               </SelectTrigger>
@@ -94,6 +142,9 @@ export default function TokenProposalForm() {
                 <SelectItem value="avalanche">Avalanche</SelectItem>
               </SelectContent>
             </Select>
+            {errors.chain && (
+              <p className="text-sm text-destructive">{errors.chain.message}</p>
+            )}
           </div>
           <Button type="submit" className="ml-auto">
             Submit Proposal
