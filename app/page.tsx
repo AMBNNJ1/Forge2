@@ -8,6 +8,7 @@ import { Layers, GroupIcon, Rocket, ShieldCheck, MessageSquare } from "lucide-re
 import { ThemeToggle } from "@/components/theme-toggle"
 import Metrics from "@/components/metrics"
 import TrendingTokenCard, { TrendingToken } from "@/components/trending-token-card"
+import { tokens } from "@/lib/tokens"
 import TokenProposalForm from "@/components/token-proposal-form"
 
 const sectionVariants = {
@@ -19,41 +20,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 }
 
-const trendingTokens: TrendingToken[] = [
-  {
-    name: "MoonCoin",
-    symbol: "MOON",
-    chain: "Base",
-    description: "The first community-driven meme coin for space enthusiasts",
-    progress: 78,
-    raised: "12.5 ETH",
-    goal: "16 ETH",
-    backers: 234,
-    daysLeft: 3,
-  },
-  {
-    name: "DeFiPro",
-    symbol: "DPRO",
-    chain: "Solana",
-    description: "Professional-grade DeFi tools for everyone",
-    progress: 45,
-    raised: "18.2 SOL",
-    goal: "40 SOL",
-    backers: 156,
-    daysLeft: 8,
-  },
-  {
-    name: "GameFi Plus",
-    symbol: "GFP",
-    chain: "Base",
-    description: "Next-gen gaming platform with Play-to-Earn mechanics",
-    progress: 92,
-    raised: "23.1 ETH",
-    goal: "25 ETH",
-    backers: 589,
-    daysLeft: 1,
-  },
-]
+const trendingTokens: TrendingToken[] = tokens.slice(0, 3)
 
 const buttonProps = { whileHover: { scale: 1.03 }, whileTap: { scale: 0.98 } }
 
@@ -189,7 +156,7 @@ export default function HomePage() {
             </div>
             <motion.div variants={itemVariants} className="mt-8 text-center">
               <Button variant="outline" asChild>
-                <Link href="#">View All Tokens</Link>
+                <Link href="/tokens">View All Tokens</Link>
               </Button>
             </motion.div>
           </div>
