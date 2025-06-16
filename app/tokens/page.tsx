@@ -32,7 +32,10 @@ export default function TokensPage() {
           </h1>
           <div className="grid md:grid-cols-3 gap-8">
             {tokens.map((t) => (
-              <TrendingTokenCard key={t.symbol} {...t} />
+              <Link key={t.symbol} href={`/tokens/${t.symbol.toLowerCase()}`}
+                className="block">
+                <TrendingTokenCard {...t} />
+              </Link>
             ))}
           </div>
         </div>
