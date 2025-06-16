@@ -130,3 +130,12 @@ M2    Token deployment on Base + Solana    2 wks
 M3    Social sharing + referral tracking    1 wk
 M4    Anti-rug systems + liquidity lock    1 wk
 M5    Token discovery dashboard    1 wk
+
+🧪 Testnet Launch Script
+To deploy example tokens on test networks, populate the environment variables from `.env.example` with testnet RPC URLs and keys. Then run:
+
+```bash
+pnpm ts-node scripts/launch-testnet.ts <chain>
+```
+
+`<chain>` can be `base`, `avalanche`, or `solana`. The script prints the address of the newly deployed token on the selected network.
