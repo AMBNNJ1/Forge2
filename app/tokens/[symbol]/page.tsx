@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Layers } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import {
@@ -47,11 +48,24 @@ export default function TokenDetailPage() {
       <main className="flex-1 py-12">
         <div className="container mx-auto max-w-2xl px-4 md:px-6 space-y-6">
           <Card className="rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
-            <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-bold">
-                {token.name} ({token.symbol})
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">{token.description}</p>
+            <CardHeader>
+              <div className="flex items-start gap-4">
+                <Image
+                  src={token.image ?? "/placeholder-logo.png"}
+                  alt={token.name}
+                  width={64}
+                  height={64}
+                  className="rounded-md"
+                />
+                <div className="space-y-1">
+                  <CardTitle className="text-2xl font-bold">
+                    {token.name} ({token.symbol})
+                  </CardTitle>
+                  <p className="text-sm text-muted-foreground">
+                    {token.description}
+                  </p>
+                </div>
+              </div>
             </CardHeader>
           </Card>
 
