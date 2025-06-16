@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 
 interface LaunchForm {
   name: string
@@ -40,6 +41,7 @@ const steps = [
   "Wallet & Network",
   "Tokenomics",
   "Advanced Settings",
+  "Funding",
 ]
 
 export default function LaunchPage() {
@@ -61,6 +63,57 @@ export default function LaunchPage() {
     },
   })
   const [step, setStep] = useState(0)
+  const [address, setAddress] = useState<string | null>(null)
+  const [amount, setAmount] = useState("")
+  const [raised, setRaised] = useState(0)
+  const goal = 10
+  const deadline = Date.now() + 7 * 24 * 60 * 60 * 1000
+  const [timeLeft, setTimeLeft] = useState(deadline - Date.now())
+
+  useEffect(() => {
+    const id = setInterval(() => setTimeLeft(deadline - Date.now()), 1000)
+    return () => clearInterval(id)
+  }, [deadline])
+
+  const connectWallet = async () => {
+    if (form.watch("chain") === "solana") {
+      // Phantom wallet
+      if (typeof window !== "undefined" && (window as any).solana?.connect) {
+        const resp = await (window as any).solana.connect()
+        setAddress(resp.publicKey.toString())
+      } else {
+        alert("Phantom not found")
+      }
+    } else {
+      // MetaMask
+      if (typeof window !== "undefined" && (window as any).ethereum?.request) {
+        const accounts = await (window as any).ethereum.request({
+          method: "eth_requestAccounts",
+        })
+        setAddress(accounts[0])
+      } else {
+        alert("MetaMask not found")
+      }
+    }
+  }
+
+  const deposit = () => {
+    const amt = parseFloat(amount)
+    if (!amt) return
+    setRaised((r) => r + amt)
+    setAmount("")
+  }
+
+  const progress = Math.min((raised / goal) * 100, 100)
+
+  const formatTime = (ms: number) => {
+    const total = Math.max(0, Math.floor(ms / 1000))
+    const d = Math.floor(total / 86400)
+    const h = Math.floor((total % 86400) / 3600)
+    const m = Math.floor((total % 3600) / 60)
+    const s = total % 60
+    return `${d}d ${h}h ${m}m ${s}s`
+  }
 
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1))
   const back = () => setStep((s) => Math.max(s - 1, 0))
@@ -241,6 +294,42 @@ export default function LaunchPage() {
                   </label>
                   <Input id="presaleDuration" type="number" {...form.register("presaleDuration")} />
                 </div>
+              </>
+            )}
+            {step === 5 && (
+              <>
+                {!address ? (
+                  <Button type="button" onClick={connectWallet}>Connect Wallet</Button>
+                ) : (
+                  <div className="space-y-4">
+                    <p className="text-sm">Connected: {address}</p>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium" htmlFor="amount">
+                        Deposit Amount ({form.watch("chain") === "solana" ? "SOL" : "ETH"})
+                      </label>
+                      <Input
+                        id="amount"
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                      />
+                      <Button type="button" onClick={deposit}>Deposit</Button>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm font-medium mb-1">
+                        <span>Funding Progress</span>
+                        <span>{progress.toFixed(0)}%</span>
+                      </div>
+                      <Progress value={progress} />
+                      <div className="flex justify-between text-sm mt-1">
+                        <span>
+                          {raised} / {goal} {form.watch("chain") === "solana" ? "SOL" : "ETH"}
+                        </span>
+                        <span>{timeLeft > 0 ? formatTime(timeLeft) : "Ended"}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </>
             )}
             <div className="flex justify-between pt-4">
