@@ -53,7 +53,7 @@ export default function TokenProposalForm() {
   return (
     <Card className="rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow-xl">
       <CardHeader>
-        <CardTitle>Propose a Token</CardTitle>
+        <CardTitle>Launch a Token</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
