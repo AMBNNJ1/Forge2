@@ -91,4 +91,29 @@ export const tokens: TrendingToken[] = [
     launchPrice: "0.015 ETH",
     totalSupply: "750M",
   },
+  {
+    name: "CodeForge",
+    symbol: "CFRG",
+    chain: "Base",
+    description:
+      "A utility token for a decentralized software development platform.",
+    progress: 0,
+    raised: "0 ETH",
+    goal: "100.000 ETH",
+    backers: 0,
+    daysLeft: 30,
+    status: "Upcoming",
+    liquidityLock: "730 Days",
+    tokenomics: {
+      burn: "2%",
+      tax: "3%",
+      lp: "60%",
+    },
+    website: undefined,
+    launchDate: undefined,
+    launchPrice: undefined,
+    totalSupply: undefined,
+    shareLink:
+      "https://6000-firebase-studio-1750035540971.cluster-jbb3mjctu5cbgsi6hwq6u4btwe.cloudworkstations.dev/token/4",
+  },
 ]

@@ -16,6 +16,14 @@ export interface TrendingToken {
   launchDate?: string
   launchPrice?: string
   totalSupply?: string
+  status?: string
+  liquidityLock?: string
+  tokenomics?: {
+    burn?: string
+    tax?: string
+    lp?: string
+  }
+  shareLink?: string
 }
 
 export default function TrendingTokenCard({
