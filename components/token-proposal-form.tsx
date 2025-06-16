@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -12,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { cn } from "@/lib/utils"
 
 interface ProposalForm {
   name: string
@@ -22,7 +24,43 @@ interface ProposalForm {
   chain: string
 }
 
+const tokenomicsOptions = [
+  {
+    title: "Growth Accelerator",
+    details: [
+      "Initial Supply: 1,000,000 Tokens",
+      "Burn Rate: 2% per transaction (deflationary)",
+      "Liquidity Pool: 70% locked for 12 months",
+      "Transaction Tax: 3% (1.5% community treasury, 1.5% marketing/development)",
+      "Anti-Whale Mechanism: Max wallet holding capped at 1% of total supply",
+    ],
+  },
+  {
+    title: "Stability Guardian",
+    details: [
+      "Initial Supply: 10,000,000 Tokens",
+      "Burn Rate: 0.5% per transaction (low deflation)",
+      "Liquidity Pool: 80% locked for 24 months",
+      "Transaction Tax: 2% (1% redistributed as reflections, 1% liquidity growth)",
+      "Reflections: Holders earn passive rewards for long-term holding",
+      "Anti-Dump Protection: Sell tax temporarily increased during volatility spikes",
+    ],
+  },
+  {
+    title: "Viral Catalyst",
+    details: [
+      "Initial Supply: 500,000 Tokens",
+      "Burn Rate: 4% per transaction (highly deflationary)",
+      "Liquidity Pool: 65% locked for 6 months",
+      "Transaction Tax: 5% (2% community incentives, 2% influencer partnerships, 1% liquidity reinforcement)",
+      "Referral & Sharing Rewards: Tokens allocated for community-driven marketing via social sharing",
+      "Dynamic Fees: Reduced fees during high-volume periods to incentivize trading activity",
+    ],
+  },
+]
+
 export default function TokenProposalForm() {
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
   const {
     register,
     handleSubmit,
@@ -103,6 +141,32 @@ export default function TokenProposalForm() {
             {errors.supply && (
               <p className="text-sm text-destructive">{errors.supply.message}</p>
             )}
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Tokenomics Options</label>
+            <div className="grid md:grid-cols-3 gap-4">
+              {tokenomicsOptions.map((opt, i) => (
+                <button
+                  type="button"
+                  key={opt.title}
+                  onClick={() => {
+                    setSelectedOption(i)
+                    setValue("tokenomics", opt.details.join("\n"))
+                  }}
+                  className={cn(
+                    "rounded-xl border p-4 text-left",
+                    selectedOption === i ? "border-primary" : "border-border/20"
+                  )}
+                >
+                  <div className="font-medium mb-2">{opt.title}</div>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    {opt.details.map((d) => (
+                      <li key={d}>{d}</li>
+                    ))}
+                  </ul>
+                </button>
+              ))}
+            </div>
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium" htmlFor="tokenomics">
