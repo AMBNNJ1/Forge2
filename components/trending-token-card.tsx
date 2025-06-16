@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 
@@ -26,6 +27,8 @@ export interface TrendingToken {
   shareLink?: string
 }
 
+const MotionCard = motion(Card)
+
 export default function TrendingTokenCard({
   name,
   symbol,
@@ -38,7 +41,11 @@ export default function TrendingTokenCard({
   daysLeft,
 }: TrendingToken) {
   return (
-    <Card className="rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow">
+    <MotionCard
+      whileHover={{ translateY: -4, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="rounded-xl border border-border/20 bg-card/80 backdrop-blur shadow"
+    >
       <CardHeader className="pb-2">
         <CardTitle className="text-lg flex items-center justify-between">
           {name} ({symbol})
@@ -70,6 +77,6 @@ export default function TrendingTokenCard({
         </div>
         <Button className="w-full">Back This Token</Button>
       </CardContent>
-    </Card>
+    </MotionCard>
   )
 }
