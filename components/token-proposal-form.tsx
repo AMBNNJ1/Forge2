@@ -28,33 +28,25 @@ const tokenomicsOptions = [
   {
     title: "Growth Accelerator",
     details: [
-      "Initial Supply: 1,000,000 Tokens",
-      "Burn Rate: 2% per transaction (deflationary)",
-      "Liquidity Pool: 70% locked for 12 months",
-      "Transaction Tax: 3% (1.5% community treasury, 1.5% marketing/development)",
-      "Anti-Whale Mechanism: Max wallet holding capped at 1% of total supply",
+      "Supply: 1,000,000 tokens",
+      "2% burn per transaction",
+      "70% liquidity locked 12 months",
     ],
   },
   {
     title: "Stability Guardian",
     details: [
-      "Initial Supply: 10,000,000 Tokens",
-      "Burn Rate: 0.5% per transaction (low deflation)",
-      "Liquidity Pool: 80% locked for 24 months",
-      "Transaction Tax: 2% (1% redistributed as reflections, 1% liquidity growth)",
-      "Reflections: Holders earn passive rewards for long-term holding",
-      "Anti-Dump Protection: Sell tax temporarily increased during volatility spikes",
+      "Supply: 10,000,000 tokens",
+      "0.5% burn on each transaction",
+      "80% liquidity locked 24 months",
     ],
   },
   {
     title: "Viral Catalyst",
     details: [
-      "Initial Supply: 500,000 Tokens",
-      "Burn Rate: 4% per transaction (highly deflationary)",
-      "Liquidity Pool: 65% locked for 6 months",
-      "Transaction Tax: 5% (2% community incentives, 2% influencer partnerships, 1% liquidity reinforcement)",
-      "Referral & Sharing Rewards: Tokens allocated for community-driven marketing via social sharing",
-      "Dynamic Fees: Reduced fees during high-volume periods to incentivize trading activity",
+      "Supply: 500,000 tokens",
+      "4% burn per transaction",
+      "5% tax for community incentives",
     ],
   },
 ]
