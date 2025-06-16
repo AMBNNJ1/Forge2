@@ -8,6 +8,7 @@ export interface TrendingToken {
   symbol: string
   chain: string
   description: string
+  image?: string
   progress: number
   raised: string
   goal: string
