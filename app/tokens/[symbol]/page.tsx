@@ -59,6 +59,12 @@ export default function TokenDetailPage() {
                   <div className="font-medium">Chain</div>
                   <div>{token.chain}</div>
                 </div>
+                {token.status && (
+                  <div className="space-y-1">
+                    <div className="font-medium">Status</div>
+                    <div>{token.status}</div>
+                  </div>
+                )}
                 <div className="space-y-1">
                   <div className="font-medium">Website</div>
                   <div>
@@ -79,7 +85,30 @@ export default function TokenDetailPage() {
                   <div className="font-medium">Total Supply</div>
                   <div>{token.totalSupply}</div>
                 </div>
+                {token.liquidityLock && (
+                  <div className="space-y-1">
+                    <div className="font-medium">Liquidity Lock</div>
+                    <div>{token.liquidityLock}</div>
+                  </div>
+                )}
               </div>
+
+              {token.tokenomics && (
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="space-y-1">
+                    <div className="font-medium">Burn</div>
+                    <div>{token.tokenomics.burn}</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="font-medium">Tax</div>
+                    <div>{token.tokenomics.tax}</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="font-medium">LP</div>
+                    <div>{token.tokenomics.lp}</div>
+                  </div>
+                </div>
+              )}
 
               <div>
                 <div className="flex justify-between text-sm font-medium mb-1">
@@ -106,6 +135,24 @@ export default function TokenDetailPage() {
               </div>
 
               <Button className="w-full">Back This Token</Button>
+
+              {token.shareLink && (
+                <div className="mt-4 space-y-2 text-sm">
+                  <div className="font-medium">Shareable Link</div>
+                  <div>
+                    <Link href={token.shareLink} className="text-primary underline" target="_blank" rel="noopener noreferrer">
+                      {token.shareLink}
+                    </Link>
+                  </div>
+                  <Button
+                    onClick={() => navigator.clipboard.writeText(token.shareLink!)}
+                    variant="secondary"
+                    className="w-full mt-2"
+                  >
+                    Copy Link
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
