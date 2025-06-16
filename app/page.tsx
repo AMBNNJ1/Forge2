@@ -36,7 +36,7 @@ export default function HomePage() {
           <nav className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground">
             <Link href="#features" className="hover:text-foreground transition-colors">Why CrowdLaunch</Link>
             <Link href="#trending" className="hover:text-foreground transition-colors">Trending</Link>
-            <Link href="#propose" className="hover:text-foreground transition-colors">Propose</Link>
+            <Link href="#propose" className="hover:text-foreground transition-colors">Launch</Link>
           </nav>
           <div className="flex items-center gap-2 ml-auto">
             <ThemeToggle />
@@ -52,7 +52,7 @@ export default function HomePage() {
         >
           <div className="container mx-auto max-w-5xl px-4 md:px-6">
             <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold tracking-tight">
-              Your Community. Your Token. Your Launch.
+              Your Community. Your Token.
             </motion.h1>
             <motion.p variants={itemVariants} className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Why launch alone when you can launch with an army? Rally your community, pool your resources, and watch your token idea become reality through the collective power of believers who back it.
@@ -173,7 +173,7 @@ export default function HomePage() {
         >
           <div className="container mx-auto max-w-xl px-4 md:px-6 text-center">
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Propose Your Token
+              Launch Your Token
             </motion.h2>
             <motion.p variants={itemVariants} className="text-muted-foreground mb-8">
               Create the next community-backed token launch

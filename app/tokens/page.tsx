@@ -18,7 +18,7 @@ export default function TokensPage() {
           <nav className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground">
             <Link href="/#features" className="hover:text-foreground transition-colors">Why CrowdLaunch</Link>
             <Link href="/#trending" className="hover:text-foreground transition-colors">Trending</Link>
-            <Link href="/#propose" className="hover:text-foreground transition-colors">Propose</Link>
+            <Link href="/#propose" className="hover:text-foreground transition-colors">Launch</Link>
           </nav>
           <div className="flex items-center gap-2 ml-auto">
             <ThemeToggle />

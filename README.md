@@ -91,7 +91,7 @@ Anti-Rug Infra    Axelar/LayerZero/Wormhole bridges
 
 📊 User Flows
 🧪 Token Creator
-Click “Propose Token”
+Click “Launch Token”
 
 Fill in form → Publish
 
