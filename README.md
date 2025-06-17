@@ -135,7 +135,7 @@ M5    Token discovery dashboard    1 wk
 To deploy example tokens on test networks, populate the environment variables from `.env.example` with testnet RPC URLs and keys. Then run:
 
 ```bash
-pnpm ts-node scripts/launch-testnet.ts <chain>
+pnpm run launch-testnet -- <chain>
 ```
 
-`<chain>` can be `base`, `avalanche`, or `solana`. The script prints the address of the newly deployed token on the selected network.
+`<chain>` can be `base`, `avalanche`, or `solana`. The script automatically compiles the smart contracts if needed and prints the address of the newly deployed token on the selected network.

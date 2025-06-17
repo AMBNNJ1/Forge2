@@ -2,6 +2,22 @@ import { deployEvmToken } from '../lib/evm';
 import { deploySolanaToken } from '../lib/solana';
 import { Keypair } from '@solana/web3.js';
 import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
+
+// Ensure contract artifacts exist for EVM deployments
+const artifact = path.join(
+  __dirname,
+  '..',
+  'artifacts',
+  'contracts',
+  'Token.sol',
+  'Token.json'
+);
+if (!fs.existsSync(artifact)) {
+  console.log('Compiling contracts...');
+  execSync('pnpm hardhat compile', { stdio: 'inherit' });
+}
 
 async function main() {
   const chain = process.argv[2];

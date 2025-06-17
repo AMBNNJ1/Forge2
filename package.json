@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "launch-testnet": "ts-node scripts/launch-testnet.ts"
   },
   "dependencies": {
     "@axelar-network/axelarjs-sdk": "^0.17.4",
